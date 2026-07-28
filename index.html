@@ -41,7 +41,7 @@
 </style></head>
 <body>
 <header><div class="brand"><span>FDF</span> Dashboard</div><span class="curtab" id="curTab"></span><button class="navToggle" id="navToggle" type="button" aria-label="Menu">☰</button>
-<div class="tabs" id="tabsBox"><button class="tab on" data-id="cards" type="button">Manager Cards</button><button class="tab" data-id="game" type="button">Beat the Record</button><button class="tab" data-id="matchup" type="button">Matchup History</button><button class="tab" data-id="trophy" type="button">Trophy Case</button><button class="tab" data-id="draft" type="button">Draft History</button><button class="tab" data-id="awards" type="button">All-Time Stats</button><button class="tab" data-id="h2h" type="button">Head-to-Head</button><button class="tab" data-id="paa" type="button">Points Above Avg</button><button class="tab" data-id="scoring" type="button">Scoring</button><button class="tab" data-id="goat" type="button">GOAT Calculator</button><button class="tab" data-id="blowouts" type="button">Blowouts &amp; Nail-Biters</button><button class="tab" data-id="luck" type="button">Luck Index</button><button class="tab" data-id="timeline" type="button">League Timeline</button></div><div class="loading" id="load"></div></header>
+<div class="tabs" id="tabsBox"><button class="tab on" data-id="season2026" type="button">2026 Dashboard</button><button class="tab" data-id="cards" type="button">Manager Cards</button><button class="tab" data-id="game" type="button">Beat the Record</button><button class="tab" data-id="matchup" type="button">Matchup History</button><button class="tab" data-id="trophy" type="button">Trophy Case</button><button class="tab" data-id="draft" type="button">Draft History</button><button class="tab" data-id="awards" type="button">All-Time Stats</button><button class="tab" data-id="h2h" type="button">Head-to-Head</button><button class="tab" data-id="paa" type="button">Points Above Avg</button><button class="tab" data-id="scoring" type="button">Scoring</button><button class="tab" data-id="goat" type="button">GOAT Calculator</button><button class="tab" data-id="blowouts" type="button">Blowouts &amp; Nail-Biters</button><button class="tab" data-id="luck" type="button">Luck Index</button><button class="tab" data-id="timeline" type="button">League Timeline</button></div><div class="loading" id="load"></div></header>
 <iframe id="view" title="FDF"></iframe>
 <div id="ticker"><div class="tk-label" id="tkLabel"></div><div class="tk-win" id="tkWin"><div class="tk-track" id="tkTrack"></div></div></div>
 <script type="text/html" id="src-matchup"><!DOCTYPE html>
@@ -1931,6 +1931,169 @@ document.getElementById('resetBtn').addEventListener('click', ()=>{
 renderRecord();
 render();
 
+<\/script>
+</body></html></script><script type="text/html" id="src-season2026"><!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>FDF 2026 Dashboard</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2230;--line:#2b3444;--txt:#e6edf3;--dim:#93a1b3;--accent:#ff7a18;--accent2:#7cc4ff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:620px;margin:0 auto;padding:24px 18px 60px}
+  h1{font-size:24px;margin:0 0 20px;letter-spacing:.3px;text-align:center} h1 span{color:var(--accent2)}
+  .tablewrap{border:1px solid var(--line);border-radius:10px;width:fit-content;margin:16px auto 0;overflow:hidden}
+  table{border-collapse:separate;border-spacing:0;width:auto;font-size:13px;font-variant-numeric:tabular-nums}
+  th,td{padding:8px 10px;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line)}
+  thead th{background:var(--panel);color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;border-bottom:1px solid var(--line)}
+  th.mgr,td.mgr{text-align:left;padding-left:14px}
+  td.rk{color:var(--dim);font-weight:700}
+  td.na{color:#4d5866}
+  tbody tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  tbody tr:last-child td{border-bottom:none}
+  .foot{color:var(--dim);font-size:11px;margin-top:16px;line-height:1.5;text-align:center}
+  .countdown{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:20px;text-align:center}
+  .countdown .cd-label{color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.6px;font-weight:700;margin-bottom:6px}
+  .countdown .cd-game{font-size:14px;color:var(--accent2);margin-bottom:12px;font-weight:600}
+  .countdown .cd-clock{display:flex;justify-content:center;gap:16px}
+  .countdown .cd-unit{display:flex;flex-direction:column;align-items:center;min-width:44px}
+  .countdown .cd-num{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+  .countdown .cd-u{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+  h2{font-size:15px;margin:0 0 4px;text-align:center;color:var(--txt)}
+  .chart{margin-top:28px}
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:16px;font-size:11px;color:var(--dim)}
+  .legend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+  .barrow{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .barrow .bname{width:56px;flex:none;font-size:12px;text-align:right;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .barrow .btrack{flex:1;height:30px;display:flex;border-radius:4px;overflow:hidden;background:rgba(255,255,255,.03)}
+  .barrow .bseg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55);overflow:hidden}
+  .barrow .btotal{width:44px;flex:none;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums;text-align:left}
+</style></head><body>
+<div class="wrap">
+  <h1><span>FDF</span> 2026 Dashboard</h1>
+  <div class="countdown">
+    <div class="cd-label" id="cdLabel">Kickoff In</div>
+    <div class="cd-game" id="cdGame"></div>
+    <div class="cd-clock">
+      <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-u">Days</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-u">Hrs</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-u">Min</div></div>
+      <div class="cd-unit"><div class="cd-num" id="cdS">--</div><div class="cd-u">Sec</div></div>
+    </div>
+  </div>
+  <h2>Team Standings</h2>
+  <div class="tablewrap"><table><thead><tr><th>#</th><th class="mgr">Manager</th><th>Record</th><th>Playoff %</th><th>Change</th><th>PF</th><th>PA</th><th>TOTW</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="chart">
+    <h2>Team Scoring by Position</h2>
+    <div class="legend" id="posLegend"></div>
+    <div id="posChart"></div>
+  </div>
+</div>
+<script id="s26" type="application/json">[
+  {"mgr":"Alex","user":"vanzante","wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Andrew","user":"akun","wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Braiden","user":"balbrecht3","wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Evan","user":null,"wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Hugh","user":null,"wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Layton","user":"hbone727","wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"White","user":null,"wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Kevin","user":null,"wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Kyle","user":"kweather","wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Stone","user":"stonemg","wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Taylor","user":null,"wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0},
+  {"mgr":"Zach","user":null,"wins":0,"losses":0,"ties":0,"pf":0,"pa":0,"totw":0,"playoffPct":50,"change":null,"qb":0,"rb":0,"wr":0,"te":0,"flx":0,"k":0,"idp":0}
+]<\/script>
+<script id="kickoffs" type="application/json">[
+  {"wk":1,"matchup":"Rams @ 49ers (Melbourne)","iso":"2026-09-10T20:35:00-04:00"},
+  {"wk":2,"matchup":"Lions @ Bills","iso":"2026-09-17T20:15:00-04:00"},
+  {"wk":3,"matchup":"Falcons @ Packers","iso":"2026-09-24T20:15:00-04:00"},
+  {"wk":4,"matchup":"Steelers @ Browns","iso":"2026-10-01T20:15:00-04:00"},
+  {"wk":5,"matchup":"Buccaneers @ Cowboys","iso":"2026-10-08T20:15:00-04:00"},
+  {"wk":6,"matchup":"Seahawks @ Broncos","iso":"2026-10-15T20:15:00-04:00"},
+  {"wk":7,"matchup":"Patriots @ Bears","iso":"2026-10-22T20:15:00-04:00"},
+  {"wk":8,"matchup":"Panthers @ Packers","iso":"2026-10-29T20:15:00-04:00"},
+  {"wk":9,"matchup":"Jaguars @ Ravens","iso":"2026-11-05T20:15:00-05:00"},
+  {"wk":10,"matchup":"Commanders @ Giants","iso":"2026-11-12T20:15:00-05:00"},
+  {"wk":11,"matchup":"Colts @ Texans","iso":"2026-11-19T20:15:00-05:00"},
+  {"wk":12,"matchup":"Bears @ Lions (Thanksgiving)","iso":"2026-11-26T13:00:00-05:00"},
+  {"wk":13,"matchup":"Chiefs @ Rams","iso":"2026-12-03T20:15:00-05:00"},
+  {"wk":14,"matchup":"Vikings @ Patriots","iso":"2026-12-10T20:15:00-05:00"},
+  {"wk":15,"matchup":"49ers @ Chargers","iso":"2026-12-17T20:15:00-05:00"},
+  {"wk":16,"matchup":"Texans @ Eagles","iso":"2026-12-24T20:15:00-05:00"},
+  {"wk":17,"matchup":"Ravens @ Bengals","iso":"2026-12-31T20:15:00-05:00"},
+  {"wk":18,"matchup":"Netflix Saturday opener (no Thursday game Wk 18)","iso":"2027-01-09T13:00:00-05:00","fallback":true}
+]<\/script>
+<script>
+const M = JSON.parse(document.getElementById('s26').textContent);
+function shade(v,min,max){
+  if(max===min) return '';
+  const t=(v-min)/(max-min);
+  const r=Math.round(248+(46-248)*t), g=Math.round(81+(160-81)*t), b=Math.round(73+(67-73)*t);
+  return `color:rgb(${r},${g},${b})`;
+}
+function changeCell(c){
+  if(c===null||c===undefined) return '<td class="na">&mdash;</td>';
+  if(c===0) return '<td class="na">0</td>';
+  const up = c>0, color = up ? 'rgb(46,160,67)' : 'rgb(248,81,73)', arrow = up ? '▲' : '▼';
+  return `<td style="color:${color}">${arrow} ${Math.abs(c)}</td>`;
+}
+const rows = [...M].sort((a,b)=> b.wins-a.wins || b.ties-a.ties || b.pf-a.pf || a.mgr.localeCompare(b.mgr));
+const pfs=M.map(x=>x.pf), pas=M.map(x=>x.pa);
+const pfMin=Math.min(...pfs), pfMax=Math.max(...pfs), paMin=Math.min(...pas), paMax=Math.max(...pas);
+document.getElementById('tb').innerHTML = rows.map((x,i)=>{
+  const record = x.wins+'-'+x.losses+(x.ties?('-'+x.ties):'');
+  return `<tr><td class="rk">${i+1}</td><td class="mgr">${x.mgr}</td><td>${record}</td><td>${x.playoffPct}%</td>${changeCell(x.change)}<td style="${shade(x.pf,pfMin,pfMax)}">${x.pf.toFixed(1)}</td><td style="${shade(x.pa,paMin,paMax)}">${x.pa.toFixed(1)}</td><td>${x.totw}</td></tr>`;
+}).join('');
+
+const POS = [
+  {key:'qb', label:'QB', color:'#7cc4ff'},
+  {key:'rb', label:'RB', color:'#2ea043'},
+  {key:'wr', label:'WR', color:'#ff7a18'},
+  {key:'te', label:'TE', color:'#ffd700'},
+  {key:'flx', label:'FLX', color:'#a78bfa'},
+  {key:'k', label:'K', color:'#f85149'},
+  {key:'idp', label:'IDP', color:'#93a1b3'}
+];
+document.getElementById('posLegend').innerHTML = POS.map(p=>
+  `<span><span class="sw" style="background:${p.color}"></span>${p.label}</span>`).join('');
+const posRanks = {};
+POS.forEach(p=>{
+  const sorted = [...M].sort((a,b)=> (b[p.key]||0)-(a[p.key]||0) || a.mgr.localeCompare(b.mgr));
+  posRanks[p.key] = {};
+  sorted.forEach((x,i)=>{ posRanks[p.key][x.mgr] = i+1; });
+});
+const chartRows = M.map(x=>({
+    mgr: x.mgr,
+    vals: POS.map(p=>x[p.key]||0),
+    total: POS.reduce((s,p)=>s+(x[p.key]||0),0)
+  })).sort((a,b)=> b.total-a.total || a.mgr.localeCompare(b.mgr));
+const maxTotal = Math.max(1, ...chartRows.map(r=>r.total));
+document.getElementById('posChart').innerHTML = chartRows.map(r=>{
+  const segs = POS.map((p,idx)=>{
+    const v = r.vals[idx];
+    if(v<=0) return '';
+    const w = (v/maxTotal*100).toFixed(2);
+    const rank = posRanks[p.key][r.mgr];
+    return `<div class="bseg" style="width:${w}%;background:${p.color}" title="${p.label}: ${v.toFixed(1)} (Rank ${rank} of 12)">${rank}</div>`;
+  }).join('');
+  return `<div class="barrow"><div class="bname">${r.mgr}</div><div class="btrack">${segs}</div><div class="btotal">${r.total.toFixed(1)}</div></div>`;
+}).join('');
+
+const KICKOFFS = JSON.parse(document.getElementById('kickoffs').textContent);
+const pad = n => String(n).padStart(2,'0');
+function tickClock(){
+  const now = new Date();
+  const next = KICKOFFS.find(k => new Date(k.iso) > now);
+  const lbl = document.getElementById('cdLabel'), gm = document.getElementById('cdGame');
+  const dEl=document.getElementById('cdD'), hEl=document.getElementById('cdH'), mEl=document.getElementById('cdM'), sEl=document.getElementById('cdS');
+  if(!next){ lbl.textContent='Season Complete'; gm.textContent=''; dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent='--'; return; }
+  const diff = new Date(next.iso) - now;
+  lbl.textContent = next.fallback ? `Week ${next.wk} Kickoff (no Thu. game)` : `Week ${next.wk} Kickoff`;
+  gm.textContent = next.matchup;
+  dEl.textContent = Math.floor(diff/86400000);
+  hEl.textContent = pad(Math.floor(diff%86400000/3600000));
+  mEl.textContent = pad(Math.floor(diff%3600000/60000));
+  sEl.textContent = pad(Math.floor(diff%60000/1000));
+}
+tickClock(); setInterval(tickClock, 1000);
 <\/script>
 </body></html></script>
 
