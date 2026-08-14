@@ -70,6 +70,7 @@
     <button class="tab" data-id="drafttrends" type="button">Draft Trends</button>
     <button class="tab" data-id="draftslots" type="button">Draft Slots</button>
     <button class="tab" data-id="hypevids" type="button">Hype Vids</button>
+    <button class="tab" data-id="logos" type="button">Logos</button>
   </div></div>
   <div class="tabgrp" data-cat="manager"><button class="tabcat" type="button">Manager Central</button><div class="tabmenu">
     <button class="tab" data-id="trophy" type="button">Trophy Case</button>
@@ -1984,10 +1985,10 @@ render();
   .wrap{max-width:620px;margin:0 auto;padding:24px 18px 60px}
   h1{font-size:24px;margin:0 0 20px;letter-spacing:.3px;text-align:center} h1 span{color:var(--accent2)}
   .tablewrap{border:1px solid var(--line);border-radius:10px;width:fit-content;margin:16px auto 0;overflow:hidden}
-  table{border-collapse:separate;border-spacing:0;width:auto;font-size:13px;font-variant-numeric:tabular-nums}
-  th,td{padding:8px 10px;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line)}
-  thead th{background:var(--panel);color:var(--dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;border-bottom:1px solid var(--line)}
-  th.mgr,td.mgr{text-align:left;padding-left:14px}
+  table{border-collapse:separate;border-spacing:0;width:auto;font-size:12px;font-variant-numeric:tabular-nums}
+  th,td{padding:7px 6px;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line)}
+  thead th{background:var(--panel);color:var(--dim);font-size:9.5px;text-transform:uppercase;letter-spacing:.2px;border-bottom:1px solid var(--line)}
+  th.mgr,td.mgr{text-align:left;padding-left:10px}
   td.rk{color:var(--dim);font-weight:700}
   td.na{color:#4d5866}
   tbody tr:nth-child(even) td{background:rgba(255,255,255,.02)}
@@ -2023,7 +2024,7 @@ render();
     </div>
   </div>
   <h2>Team Standings</h2>
-  <div class="tablewrap"><table><thead><tr><th>#</th><th class="mgr">Manager</th><th>Record</th><th>Playoff %</th><th>Change</th><th>PF</th><th>PA</th><th>TOTW</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="tablewrap"><table><thead><tr><th>#</th><th class="mgr">MGR</th><th>W-L</th><th>PLYF %</th><th>Trend</th><th>PF</th><th>PA</th><th>TOTW</th></tr></thead><tbody id="tb"></tbody></table></div>
   <div class="chart">
     <h2>Team Scoring by Position</h2>
     <div class="legend" id="posLegend"></div>
@@ -2828,6 +2829,43 @@ video{display:block;width:100%;max-height:520px;background:#000}
   loadYear(range.value);
 })();
 <\/script>
+</body></html></script><script type="text/html" id="src-logos"><!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>FDF Logos</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2230;--line:#2b3444;--txt:#e6edf3;--dim:#93a1b3;--accent2:#7cc4ff;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+.wrap{max-width:900px;margin:0 auto;padding:24px 18px 40px}
+h1{font-size:22px;margin:0 0 4px;text-align:center;letter-spacing:.3px} h1 span{color:var(--accent2)}
+.sub{color:var(--dim);font-size:12.5px;text-align:center;margin:0 auto 24px;line-height:1.5;max-width:520px}
+.eras{display:flex;flex-direction:column;gap:18px}
+.era{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 20px;display:flex;align-items:center;gap:24px}
+.era .imgbox{flex:0 0 200px;height:170px;display:flex;align-items:center;justify-content:center;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px}
+.era .imgbox img{max-width:100%;max-height:100%;object-fit:contain}
+.era .meta{flex:1;min-width:0}
+.era .years{font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:.6px;font-weight:800;margin-bottom:6px}
+.era .name{font-size:16px;font-weight:700}
+@media (max-width:560px){.era{flex-direction:column;text-align:center}.era .imgbox{flex:0 0 auto;width:100%;max-width:240px}}
+.foot{color:var(--dim);font-size:11px;margin:24px auto 0;line-height:1.6;text-align:center;max-width:520px}
+</style></head><body>
+<div class="wrap">
+<h1><span>FDF</span> Logos</h1>
+<div class="sub">The Favre Dolar Fantasy crest through the years.</div>
+<div class="eras">
+  <div class="era">
+    <div class="imgbox"><img src="logo_2011_2020.png" alt="FDF logo 2011-2020"></div>
+    <div class="meta"><div class="years">2011 &ndash; 2020</div><div class="name">The Original Era</div></div>
+  </div>
+  <div class="era">
+    <div class="imgbox"><img src="logo_2021_2024.png" alt="FDF logo 2021-2024"></div>
+    <div class="meta"><div class="years">2021 &ndash; 2024</div><div class="name">The Footlong Era</div></div>
+  </div>
+  <div class="era">
+    <div class="imgbox"><img src="logo.png" alt="FDF logo 2025-present"></div>
+    <div class="meta"><div class="years">2025 &ndash; Present</div><div class="name">The Wordmark Era</div></div>
+  </div>
+</div>
+</div>
 </body></html></script><script type="text/html" id="src-draftslots"><!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>FDF Draft Slots</title>
 <style>
