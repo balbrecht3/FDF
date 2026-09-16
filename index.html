@@ -2011,7 +2011,7 @@ render();
   table{border-collapse:separate;border-spacing:0;width:auto;font-size:12px;font-variant-numeric:tabular-nums}
   th,td{padding:7px 6px;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line)}
   thead th{background:#3f93df;color:#ffffff;font-weight:800;font-size:9.5px;text-transform:uppercase;letter-spacing:.2px;border-bottom:1px solid var(--line)}
-  th.mgr,td.mgr{text-align:left;padding-left:10px}
+  th.mgr,td.mgr{text-align:left;padding-left:10px;text-transform:uppercase}
   td.rk{color:var(--dim);font-weight:700}
   td.na{color:#4d5866}
   tbody tr:nth-child(even) td{background:rgba(255,255,255,.02)}
@@ -2070,13 +2070,14 @@ render();
     background-size:auto,auto,auto,auto,200px 200px}
   .foot{color:var(--dim);font-size:11px;margin-top:16px;line-height:1.5;text-align:center}
   h2{font-size:15px;margin:0 0 4px;text-align:center;color:var(--txt)}
-  .chart{margin-top:28px}
-  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:16px;font-size:11px;color:var(--dim)}
+  .chart{margin-top:12px}
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:8px;font-size:11px;color:var(--dim)}
   .legend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
-  .barrow{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .barrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .chart .ig-title{margin-top:4px}
   .barrow .bname{width:56px;flex:none;font-size:12px;text-align:right;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .barrow .btrack{flex:1;height:30px;display:flex;border-radius:4px;overflow:hidden;background:rgba(255,255,255,.03)}
-  .barrow .bseg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55);overflow:hidden}
+  .barrow .btrack{flex:1;height:20px;display:flex;border-radius:4px;overflow:hidden;background:rgba(255,255,255,.03)}
+  .barrow .bseg{height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55);overflow:hidden}
   .barrow .btotal{width:44px;flex:none;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums;text-align:left}
 </style></head><body>
 <div class="wrap">
