@@ -2281,12 +2281,32 @@ async function loadLiveSleeperData(){
   // own weekly scores (or the league-wide pool if it has none yet) for unplayed weeks.
   const N_SIM = 3000;
   const mgrs = Object.values(base);
-  const leaguePool = [];
-  mgrs.forEach(x => x.weeklyScores.forEach(s => { if(s!=null) leaguePool.push(s); }));
+
+  // "Power" average per team: points-for average regressed toward the league mean using
+  // PRIOR_GAMES worth of phantom league-average games. Early in the season real sample
+  // sizes are tiny, so this stays close to the league average for everyone (odds cluster
+  // near a coin flip); as real weeks pile up, a team's own scoring increasingly dominates
+  // the blend, so odds diverge gradually based on real points-for (our stand-in for
+  // "implied talent") rather than small-sample noise.
+  const allScores = [];
+  mgrs.forEach(x => x.weeklyScores.forEach(s => { if(s!=null) allScores.push(s); }));
+  const leagueAvg = allScores.length ? allScores.reduce((a,b)=>a+b,0)/allScores.length : 110;
+  const leagueVar = allScores.length > 1
+    ? allScores.reduce((a,b)=>a+(b-leagueAvg)*(b-leagueAvg),0)/(allScores.length-1)
+    : 625; // ~25pt weekly stdev fallback before any games exist
+  const leagueStdev = Math.sqrt(leagueVar) || 25;
+  const PRIOR_GAMES = 6;
+  mgrs.forEach(x => {
+    const played = x.weeklyScores.filter(s=>s!=null);
+    const n = played.length;
+    const teamAvg = n ? played.reduce((a,b)=>a+b,0)/n : leagueAvg;
+    x.powerAvg = (teamAvg*n + leagueAvg*PRIOR_GAMES) / (n + PRIOR_GAMES);
+  });
   function sampleScoreFor(x){
-    const pool = x.weeklyScores.filter(s=>s!=null);
-    const src = pool.length ? pool : (leaguePool.length ? leaguePool : [100]);
-    return src[Math.floor(Math.random()*src.length)];
+    // Box-Muller normal sample centered on the team's regressed scoring average.
+    const u1 = Math.random() || 1e-9, u2 = Math.random();
+    const z = Math.sqrt(-2*Math.log(u1)) * Math.cos(2*Math.PI*u2);
+    return Math.max(0, x.powerAvg + z*leagueStdev);
   }
   const playoffCount = {}; mgrs.forEach(x => playoffCount[x.mgr]=0);
   for(let sim=0; sim<N_SIM; sim++){
