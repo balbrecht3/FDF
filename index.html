@@ -2429,6 +2429,18 @@ async function loadLiveSleeperData(){
     recordsEnteringWeek[w] = map;
   }
 
+  // Seeding as it stood ENTERING each week. This is what the Game of the Week is
+  // picked from, so a week's pick is settled the moment that week kicks off and
+  // never reshuffles as later results move the standings around. Week 1 is
+  // skipped on purpose -- there is no standings order to seed from before any
+  // game has been played, and standingsAsOf(0) would just be alphabetical.
+  const seedsEnteringWeek = {};
+  for(let w=2; w<=regularSeasonWeeks; w++){
+    const map = {};
+    standingsAsOf(w-1).forEach((x,i) => { map[x.mgr] = i+1; });
+    seedsEnteringWeek[w] = map;
+  }
+
   // Build a live Game-of-the-Week schedule (real pairings + real scores for completed weeks)
   // so that widget stops depending on a manually-curated table too.
   const gowSchedule = {};
@@ -2443,6 +2455,8 @@ async function loadLiveSleeperData(){
       }
       entry.recA = (recordsEnteringWeek[week]||{})[mA] || '0-0';
       entry.recB = (recordsEnteringWeek[week]||{})[mB] || '0-0';
+      entry.seedA = (seedsEnteringWeek[week]||{})[mA];
+      entry.seedB = (seedsEnteringWeek[week]||{})[mB];
       return entry;
     });
   });
@@ -2553,16 +2567,35 @@ const GOW_PHOTOS = {
 
   let gowMode = 'game';
 
+  // Week 1 has no standings to be seeded from, so its Game of the Week is pinned.
+  const WEEK1_GOW = {a:'Braiden', b:'Evan'};
+
   function bestMatchup(week){
-    const seedOf = {};
-    rows.forEach((x,i)=>{ seedOf[x.mgr] = i+1; });
     const weekMatchups = GOW_SCHEDULE[week] || [];
+    // Live seeding, used only for the "#N seed" badge in week 1 and as a fallback
+    // before the Sleeper pull resolves. It never decides which game is picked.
+    const liveSeed = {};
+    rows.forEach((x,i)=>{ liveSeed[x.mgr] = i+1; });
+    function pack(pair){
+      return {a:pair.a, b:pair.b,
+        sa: pair.seedA!=null ? pair.seedA : liveSeed[pair.a],
+        sb: pair.seedB!=null ? pair.seedB : liveSeed[pair.b],
+        total: 0, scoreA:pair.scoreA, scoreB:pair.scoreB, recA:pair.recA, recB:pair.recB};
+    }
+    if(week === 1){
+      const pinned = weekMatchups.find(function(p){
+        return (p.a===WEEK1_GOW.a && p.b===WEEK1_GOW.b) || (p.a===WEEK1_GOW.b && p.b===WEEK1_GOW.a);
+      });
+      if(pinned) return pack(pinned);
+    }
     let best = null;
     weekMatchups.forEach(function(pair){
-      const sa=seedOf[pair.a], sb=seedOf[pair.b];
+      // Seeds entering this week; if they aren't available yet, fall back to live.
+      const sa = pair.seedA!=null ? pair.seedA : liveSeed[pair.a];
+      const sb = pair.seedB!=null ? pair.seedB : liveSeed[pair.b];
       if(sa==null || sb==null) return;
-      const total = sa+sb;
-      if(!best || total < best.total){ best = {a:pair.a, b:pair.b, sa:sa, sb:sb, total:total, scoreA:pair.scoreA, scoreB:pair.scoreB, recA:pair.recA, recB:pair.recB}; }
+      const total = sa+sb;   // lowest combined seed = best matchup
+      if(!best || total < best.total){ const e = pack(pair); e.total = total; best = e; }
     });
     return best;
   }
