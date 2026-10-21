@@ -2316,6 +2316,8 @@ render();
   .mu-side.L .rk{background:#6ec1ff;color:#0b2745}
   .mu-side.R .rk{background:#0c0c0e;color:#fff}
   .mu-sub .rc{font-variant-numeric:tabular-nums}
+  .mu-avw{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+  .mu-avn{max-width:44px;font-size:9px;font-weight:800;line-height:1;color:#566377;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .mu-mid{text-align:center;line-height:1}
   .mu-mid .lbl{display:block;font-size:6.5px;letter-spacing:1px;text-transform:uppercase;font-weight:800;color:#8a95a6}
   .mu-rec{margin:3px 0 4px;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;color:#8a95a6;white-space:nowrap}
@@ -2333,6 +2335,33 @@ render();
   .mu-str.R .ar,.mu-str.R .n{color:#0b0b0d}
   .mu-none{font-size:8px;font-weight:700;color:#8a95a6;white-space:nowrap}
   .mu-wrap .ig-logo{margin-top:18px}
+  .cu-wrap{margin-top:34px}
+  .ph-wrap{margin-top:34px}
+  .ph-wrap .ig-title{margin-bottom:12px}
+  .ph-box{max-width:620px;margin:0 auto;overflow-x:auto;border-radius:14px;background:linear-gradient(180deg,#fafbfc 0%,#e6e9ee 100%);box-shadow:0 2px 12px rgba(155,165,180,.32)}
+  .ph-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;color:#0b0b0d}
+  .ph-tbl thead th{background:#3f93df;color:#ffffff;font-size:11px;letter-spacing:.5px;text-transform:uppercase;font-weight:800;padding:9px 3px;border-bottom:0;white-space:nowrap}
+  .ph-tbl td{padding:7px 3px;text-align:center;border-bottom:1px solid #e1e5ea;font-size:12px;font-weight:800;min-width:34px}
+  .ph-tbl tr:last-child td{border-bottom:0}
+  .ph-tbl td.mg,.ph-tbl th.mg{position:sticky;left:0;z-index:1;text-align:left;padding-left:10px;padding-right:6px;min-width:52px}
+  .ph-tbl td.mg{background:#f3f5f8;color:#0b0b0d;font-size:12.5px;font-weight:900;white-space:nowrap}
+  .ph-tbl th.mg{background:#3f93df}
+  .ph-tbl td.cur{box-shadow:inset 2px 0 0 #3f93df,inset -2px 0 0 #3f93df}
+  .ph-tbl tr:last-child td.cur{box-shadow:inset 2px 0 0 #3f93df,inset -2px 0 0 #3f93df,inset 0 -2px 0 #3f93df}
+  .cu-wrap .ig-title{margin-bottom:12px}
+  .cu-box{max-width:620px;margin:0 auto;overflow-x:auto;border-radius:14px;background:linear-gradient(180deg,#fafbfc 0%,#e6e9ee 100%);box-shadow:0 2px 12px rgba(155,165,180,.32)}
+  .cu-tbl{width:100%;table-layout:fixed;border-collapse:collapse;font-variant-numeric:tabular-nums;color:#0b0b0d}
+  .cu-tbl thead th{background:#3f93df;color:#ffffff;font-size:12px;letter-spacing:.5px;text-transform:uppercase;font-weight:800;padding:9px 2px;border-bottom:0}
+  .cu-tbl td{padding:6px 2px;text-align:center;border-bottom:1px solid #e1e5ea;line-height:1.15;vertical-align:middle}
+  .cu-tbl tr:last-child td{border-bottom:0}
+  .cu-tbl td.wk{font-weight:900;font-size:15px;color:#0b0b0d}
+  .cu-tbl th:first-child{width:28px}
+  .cu-tbl .who{display:block;font-size:clamp(9px,2.6vw,12px);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#0b0b0d}
+  .cu-tbl .who i{font-style:normal;color:#8a95a6;font-weight:700}
+  .cu-tbl .pts{display:block;font-size:clamp(10px,2.8vw,11.5px);font-weight:700;color:#3a4657;margin-top:2px}
+  .cu-tbl td.now{background:#cfe6ff;box-shadow:inset 0 0 0 2px #3f93df}
+  .cu-tbl td.now .who i{color:#1a80dc}
+
   .po-wrap{margin-top:34px}
   .po-legend{max-width:380px;margin-left:auto!important;margin-right:auto!important;display:flex;justify-content:center;flex-wrap:wrap;gap:8px 16px;margin:8px 0 12px;font-size:11px;color:var(--dim)}
   .po-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -2429,7 +2458,16 @@ render();
     <div class="mu-list" id="muList"></div>
     <div class="ig-logo"><img id="muLogo" alt="Favre Dolar Fantasy"></div>
   </div>
+  <div class="cu-wrap" id="cuWrap">
+    <h2 class="ig-title">All-Time Scoring Pace</h2>
+    <div class="cu-box"><table class="cu-tbl"><thead><tr><th>Thru</th><th>#1</th><th>#2</th><th>#3</th><th>#4</th><th>#5</th></tr></thead><tbody id="cuBody"></tbody></table></div>
+  </div>
+  <div class="ph-wrap" id="phWrap" hidden>
+    <h2 class="ig-title">Playoff Odds by Week</h2>
+    <div class="ph-box"><table class="ph-tbl"><thead id="phHead"></thead><tbody id="phBody"></tbody></table></div>
+  </div>
 </div>
+<script id="cuData" type="application/json">[[2011,"Brad","Team Arty",[100.06,153.66,122.08,144.51,153.37,88.57,111.34,162.72,77.92,128.24,117.04,117.02,170.5]],[2011,"Braiden","City Wok",[151.48,234.29,124.83,182.08,119.46,159.88,97.04,130.85,142.82,158.81,160.28,104.15,132.39]],[2011,"Deisel","White Girls Go Hard",[121.3,113.53,173.69,124.02,128.04,109.82,120.98,64.04,97.16,132.89,58.03,133.95,130.99]],[2011,"Geordie","Geordies Dirty Sanchez",[136.7,139.32,145.02,133.3,121.71,123.6,124.15,132.89,143.9,104.66,134.99,136.42,117.22]],[2011,"George","The Calgariams",[170.67,107.87,111.19,100.89,111.73,81.72,133.07,86.4,98.19,104.34,81.37,165.52,101.57]],[2011,"Hawkey","the a team",[161.11,122.27,136.1,111.41,115.33,134.09,115.29,37.04,138.41,204.78,140.41,177.55,130.48]],[2011,"Kluzniak","Marshmallow",[172.74,132.25,115.61,143.21,93.84,115.27,111.42,88.85,112.96,113.45,104.61,115.89,105.41]],[2011,"Kunerth","the conVICKs",[131.0,103.64,102.56,112.09,116.47,89.1,79.26,71.34,95.41,87.73,75.8,124.93,77.89]],[2011,"Kyle","Weather Bees",[137.8,163.89,129.98,135.72,163.07,123.85,88.69,143.67,107.0,139.46,135.39,105.05,189.66]],[2011,"Mckenna","NOSaints",[114.02,121.12,124.45,168.53,109.49,122.74,122.61,108.71,150.38,119.12,129.18,85.39,101.28]],[2011,"Reihl","Reihlius Deihlius",[117.52,154.86,149.13,114.9,77.23,102.54,53.88,64.73,61.26,66.19,56.78,64.52,62.47]],[2011,"Thrasher","2011 champions",[113.65,144.79,112.75,137.05,93.11,106.69,159.6,171.4,168.18,174.81,129.28,171.59,166.23]],[2012,"Brad","Forgetting Brandon Marshall",[145.92,131.47,154.66,213.62,161.57,125.64,127.19,132.97,184.07,103.0,148.45,162.2,129.05]],[2012,"Braiden","The Grass is Always Fleener",[120.12,107.63,115.33,133.03,126.24,134.32,144.75,135.38,157.22,144.9,133.61,121.24,144.39]],[2012,"CJ","Corn on the Schaub",[138.49,160.2,119.89,149.96,130.36,111.16,147.25,108.26,126.54,141.53,156.39,130.73,100.13]],[2012,"Geordie","You Got Ngata",[122.68,127.04,93.44,115.01,90.21,112.97,87.46,120.77,140.81,126.81,65.34,113.53,102.96]],[2012,"Hawkey","San Frandusky 69'ers",[141.15,150.18,113.69,162.38,179.22,115.92,201.81,115.6,122.84,102.28,97.98,128.19,132.09]],[2012,"Kunerth","Vick in a Box",[175.42,121.18,177.3,122.57,153.35,104.11,116.46,103.67,49.5,67.37,117.62,111.6,92.05]],[2012,"Kyle","Weather Bees",[119.18,148.72,125.17,173.4,135.42,150.06,135.0,104.62,95.89,135.34,132.15,129.09,168.94]],[2012,"Layton","brad likes men",[170.89,114.06,99.75,161.32,105.68,157.0,93.79,187.97,89.83,116.84,129.85,92.56,90.34]],[2012,"Lunn","Lyan Runn",[127.03,111.35,141.34,102.06,123.17,110.32,75.08,96.91,126.83,142.77,106.54,110.12,125.84]],[2012,"Mckenna","NOSaints",[123.68,120.54,116.05,133.29,110.04,120.19,69.21,125.26,150.85,91.84,137.61,133.78,129.83]],[2012,"Stone","The Baby Seals",[139.92,155.68,129.72,160.76,109.3,126.45,109.51,131.5,117.48,161.62,134.91,150.95,146.37]],[2012,"Thrasher","T-Rock",[129.71,135.87,105.36,114.02,112.59,134.12,109.6,95.9,88.37,118.79,107.06,144.11,108.53]],[2013,"Brad","Geno 911",[162.52,152.41,164.08,133.3,99.2,105.75,141.48,136.5,98.94,124.1,125.81,115.81,119.78]],[2013,"Braiden","Pop A Molly I'm Suspended",[133.6,117.1,136.55,139.4,150.47,166.61,133.15,154.99,168.26,132.44,186.42,188.48,166.76]],[2013,"CJ","Corn on the Schaub",[145.77,188.16,120.44,124.79,117.91,129.36,156.77,110.61,95.32,118.57,122.2,150.27,143.6]],[2013,"Geordie","1st Down Syndrome",[159.97,188.27,150.34,154.14,128.26,111.33,135.57,119.23,97.93,113.75,71.34,108.3,66.92]],[2013,"Hawkey","San Frandusky 69'ers",[161.58,94.28,105.09,124.77,147.88,66.82,101.11,98.86,139.63,117.36,106.63,112.28,121.33]],[2013,"John","Debbie's Finger Hut",[182.75,158.71,138.98,169.68,105.75,112.69,126.48,71.41,75.04,116.77,117.91,99.81,142.27]],[2013,"Kunerth","Vick in a Box",[154.76,130.61,86.97,104.48,96.55,95.21,97.31,95.11,159.91,81.47,91.01,106.46,104.71]],[2013,"Kyle","Weather Bees",[101.04,130.37,139.35,169.56,113.63,91.31,122.39,113.84,122.27,94.8,102.99,109.76,111.42]],[2013,"Mckenna","NOSaints",[120.4,138.32,97.75,107.57,53.56,101.6,102.79,98.88,91.02,79.94,126.15,70.22,117.04]],[2013,"Pichler","R-US",[171.1,101.89,117.51,170.24,117.34,84.35,104.62,127.06,156.93,105.94,121.48,149.73,144.41]],[2013,"Stone","The Baby Seals",[170.98,107.65,91.2,124.26,152.22,105.32,116.68,136.52,101.74,146.07,132.41,150.35,123.03]],[2013,"Wagner","Wagner's Winners",[142.48,121.85,108.58,171.81,114.89,78.69,40.86,69.01,82.58,129.52,78.19,83.75,77.31]],[2014,"Brad","Do The Sankey Leg",[115.89,97.23,138.09,178.22,117.68,122.42,109.23,162.53,111.15,97.81,159.76,131.79,191.64]],[2014,"Braiden","Hash Gordon",[172.95,162.28,128.27,147.85,121.86,136.96,147.43,149.8,149.48,136.18,146.09,139.95,181.45]],[2014,"Geordie","Stone is a",[166.22,169.44,128.8,125.45,134.16,117.11,152.85,122.38,66.83,118.47,129.85,118.11,131.68]],[2014,"Jon","ImmaGoApeOnU",[102.51,157.95,118.75,152.54,167.92,135.97,126.71,133.81,73.69,127.07,152.64,118.46,125.48]],[2014,"Kunerth","SNOZZBERRIES",[129.19,114.8,152.27,148.07,163.89,146.21,161.2,163.16,151.39,99.5,161.6,166.02,157.2]],[2014,"Kyle","Adrian BeatYourSon",[123.41,144.2,102.3,138.41,105.3,119.59,147.8,140.0,108.75,178.63,140.64,129.72,134.51]],[2014,"Layton","Haters",[114.68,101.51,114.06,144.59,138.99,135.07,122.8,136.3,195.58,145.18,158.46,196.15,149.28]],[2014,"Mckenna","NOSaints",[161.62,130.74,146.56,103.99,111.75,123.4,92.19,82.07,63.92,81.69,83.58,104.98,175.72]],[2014,"Peter","Jonny foosball",[153.07,127.05,154.74,113.0,104.13,143.6,99.03,184.64,169.46,118.56,89.73,76.54,145.85]],[2014,"Stone","The Baby Seals",[177.17,140.04,120.93,160.51,189.25,154.61,158.8,165.96,109.27,136.88,110.71,139.67,184.73]],[2014,"Thrasher","Tiight Percy",[155.22,110.67,139.51,136.27,133.38,182.6,125.67,144.34,135.0,73.15,94.46,155.67,130.51]],[2014,"White","Lovers",[130.95,127.59,133.32,135.24,155.46,138.95,157.42,118.34,140.09,153.69,120.06,128.34,152.08]],[2015,"Alex","NY Finger Blasters",[133.9,133.66,212.2,127.92,148.69,119.8,101.25,130.69,100.05,132.76,138.51,158.29,154.03]],[2015,"Brad","Ice  Ice Baby",[139.81,115.84,191.39,134.31,143.76,160.01,133.01,169.33,108.21,141.05,91.17,87.53,136.86]],[2015,"Braiden","OTPCJ",[188.96,109.44,156.28,120.25,174.57,146.48,168.8,152.41,141.09,118.39,114.73,153.86,104.91]],[2015,"Colton","I Need ACLs",[117.67,116.7,159.86,128.39,116.9,127.88,142.49,140.38,128.7,138.55,99.37,121.07,131.35]],[2015,"Geordie","The Four Tunesmen",[116.17,150.91,130.93,126.79,154.88,116.42,128.72,87.59,153.57,118.52,140.98,151.01,140.48]],[2015,"Kunerth","SNOZZBERRIES",[88.26,81.3,86.26,91.6,52.97,101.37,113.77,89.72,71.7,71.9,72.35,91.97,65.93]],[2015,"Kyle","Adrian BeatYourSon",[104.79,121.18,135.17,99.36,70.78,107.22,79.28,109.69,139.49,79.07,95.47,154.75,102.51]],[2015,"Layton","Meth is Tight",[131.99,138.55,112.34,117.3,142.39,160.6,111.76,134.67,174.45,95.46,109.25,89.31,177.79]],[2015,"Stone","The Baby Seals",[121.57,181.99,94.61,123.68,108.03,166.95,121.83,158.21,155.9,124.11,137.83,162.65,128.3]],[2015,"Thrasher","Tiight Percy",[119.12,96.74,115.4,95.01,126.22,108.16,142.57,113.37,135.3,116.87,118.87,118.18,130.9]],[2015,"White","Corn on the Schaub",[130.73,125.96,85.46,109.48,86.71,127.15,151.36,110.39,139.91,140.07,129.4,166.07,146.04]],[2015,"Yok","Brad Likes Men",[122.9,136.46,130.76,116.65,135.56,140.34,137.42,143.24,99.23,123.55,87.58,155.13,150.68]],[2016,"Alex","Hayden is a fuck boi",[162.71,130.29,162.34,136.66,152.29,150.86,146.6,112.09,136.64,139.13,165.6,170.95,129.1]],[2016,"Brad","Ice  Ice Baby",[165.96,138.55,147.46,172.35,103.25,156.66,135.31,151.18,93.7,125.95,135.39,121.15,133.1]],[2016,"Braiden","Johnson and Johnson",[129.78,143.95,164.06,123.79,140.14,139.84,136.46,151.12,125.97,125.38,185.78,161.21,129.49]],[2016,"Colton","I Need ACLs",[166.6,103.27,143.08,144.54,114.78,137.53,165.43,116.14,129.94,130.24,104.85,106.32,130.01]],[2016,"Geordie","Fuck this Bullshit Season",[84.59,135.66,124.24,109.88,111.63,126.55,144.44,90.01,97.73,117.14,55.43,93.56,99.6]],[2016,"Hayden","Anyone But Alex",[165.87,106.33,121.13,191.13,147.71,126.64,125.19,175.0,148.27,131.61,138.44,143.25,103.22]],[2016,"Kunerth","Clubbing Baby Seals",[107.85,88.5,130.47,123.16,98.05,124.38,106.83,121.39,162.92,135.22,105.91,128.15,133.12]],[2016,"Kyle","Adrian BeatYourSon",[137.29,158.28,132.76,132.62,107.88,102.95,120.8,150.54,104.58,148.15,100.29,106.2,112.56]],[2016,"Layton","Tentacle",[176.22,139.28,149.27,140.52,158.45,129.24,108.49,139.5,144.62,166.0,108.6,159.7,144.21]],[2016,"Stone","The Baby Seals",[111.77,92.66,135.96,121.15,144.19,106.92,121.65,148.35,148.3,105.69,141.75,175.12,138.38]],[2016,"White","Dak Lives Matter",[169.96,186.62,90.31,112.46,152.74,131.69,152.76,103.56,154.59,131.82,124.17,146.03,136.82]],[2016,"Yok","Ha Ha Clit n Dicks",[158.81,137.05,118.82,125.03,96.5,88.01,156.55,138.32,155.14,134.17,140.03,118.9,118.54]],[2017,"Alex","My Knee",[109.87,100.35,137.51,142.03,134.66,130.97,124.9,97.82,112.68,139.96,79.45,130.73,141.19]],[2017,"Brad","Graham's to Ounces",[106.67,111.25,109.21,114.4,129.48,115.87,128.73,176.97,99.27,125.73,124.84,118.84,126.17]],[2017,"Braiden","Bosa Constrictors",[144.62,130.61,204.06,141.58,101.07,132.26,125.7,161.45,171.41,134.85,147.92,169.75,171.59]],[2017,"Colton","I Need ACLs",[117.63,91.04,114.25,120.44,99.63,125.38,127.63,146.16,104.85,111.32,166.3,168.26,120.72]],[2017,"Geordie","my mom says im special",[124.83,82.28,86.5,88.98,110.48,83.71,91.57,123.66,135.81,112.45,104.6,110.37,75.34]],[2017,"Hayden","And Were Goff",[102.23,118.05,132.73,121.1,116.78,86.86,111.87,99.08,107.49,150.56,100.8,107.38,102.48]],[2017,"Kunerth","Taste the Rainbow",[121.64,147.13,98.51,112.44,113.37,125.44,101.82,107.66,89.61,112.87,122.77,121.27,131.46]],[2017,"Kyle","Hyde and Seek",[84.39,97.03,120.41,81.45,106.01,125.93,114.65,76.74,66.18,139.68,113.38,123.07,80.84]],[2017,"Layton","Osama Bin Laden",[85.44,129.52,97.72,117.88,117.17,99.06,133.59,80.69,114.55,78.6,94.01,56.46,108.65]],[2017,"Stone","The Baby Seals",[111.81,102.95,157.31,111.71,127.31,100.36,108.9,113.9,118.79,82.07,156.44,138.45,116.81]],[2017,"White","Mixon It Up With The Ladies",[114.83,145.3,102.52,126.55,122.57,148.74,115.52,137.22,121.77,114.7,151.16,142.23,170.03]],[2017,"Yok","Ha Ha Clits-n-Dicks",[71.68,129.11,145.04,118.89,112.52,118.78,114.56,96.91,102.02,94.8,115.2,86.12,68.03]],[2018,"Alex","Larry Nassar's Little Beauties",[135.75,129.78,146.37,150.47,154.39,148.18,110.17,138.28,170.08,146.13,131.04,149.41,162.52]],[2018,"Brad","Graham's to Ounces",[111.6,135.14,124.74,102.89,126.15,115.54,107.56,99.61,94.91,105.75,56.33,128.54,86.67]],[2018,"Braiden","Sloppy Burkhead",[114.69,117.82,112.95,145.13,131.15,136.86,136.48,160.0,142.33,151.0,151.89,146.05,155.82]],[2018,"Geordie","my mom says im special",[135.56,130.08,90.99,136.37,72.42,111.03,147.01,91.1,58.6,65.05,157.38,147.13,89.02]],[2018,"Kunerth","Taste the Rainbow",[182.78,147.32,176.82,175.2,64.62,118.56,126.19,166.88,121.55,161.74,178.12,112.4,93.26]],[2018,"Kyle","Weather Bees",[130.9,160.75,116.17,114.55,152.31,154.75,136.61,153.23,85.37,121.33,126.28,131.14,121.81]],[2018,"Layton","Fat Bitches Only",[119.83,105.12,106.15,109.74,109.13,106.63,130.01,124.16,109.41,115.79,149.27,150.41,122.29]],[2018,"Stone","The Baby Seals",[145.71,129.31,157.17,171.42,139.05,160.42,162.75,123.32,193.58,140.91,102.96,96.54,98.66]],[2018,"TJ","Crabtree's Chain",[124.93,125.09,125.91,136.04,152.93,119.06,118.79,143.87,95.48,110.69,137.51,122.49,154.37]],[2018,"White","Jimmy G Strings",[143.0,127.2,127.89,111.15,145.1,138.86,128.87,115.07,165.42,157.92,131.64,165.01,112.3]],[2018,"Yok","RIP MAC",[120.16,171.64,148.72,160.05,107.84,156.07,104.15,136.17,132.44,142.96,140.95,168.6,155.98]],[2018,"Zach","King of the JuJus",[121.54,130.88,106.71,131.53,133.91,121.21,150.75,122.13,101.17,94.76,122.96,83.16,136.86]],[2019,"Alex","Saltcabbage",[183.87,113.61,172.3,78.6,154.92,126.72,105.21,144.31,143.27,180.04,138.64,102.82,155.76]],[2019,"Brad","Green Bell Peppers",[188.46,153.5,147.95,106.44,104.33,137.08,116.98,148.48,118.38,153.46,137.18,145.03,87.49]],[2019,"Braiden","Hunter Henry Hippos",[144.97,107.09,164.23,125.27,169.08,161.25,96.01,174.95,183.44,132.84,155.13,160.41,135.98]],[2019,"Kunerth","Taste the Rainbow",[124.79,100.5,129.38,118.96,138.31,127.71,110.56,133.04,143.12,111.35,145.73,101.41,101.65]],[2019,"Kyle","Weather Bees",[179.27,139.64,160.61,111.09,131.08,123.44,75.86,110.54,129.67,132.12,113.05,122.72,131.68]],[2019,"Lamp","Michael Vick's Underdogs",[107.15,138.52,124.73,132.61,135.06,140.63,92.79,115.55,164.93,128.24,88.25,91.07,108.89]],[2019,"Layton","Cum Dumpster",[96.96,126.3,117.01,143.99,121.9,104.27,147.35,145.13,121.07,124.77,121.23,146.21,120.74]],[2019,"Stone","The Baby Seals",[120.23,90.54,157.28,130.92,122.7,136.93,132.35,124.35,127.77,136.45,137.59,172.93,109.72]],[2019,"TJ","Ma-homies",[124.51,174.06,131.09,118.59,161.07,132.92,95.14,167.04,123.72,170.47,122.15,106.79,155.53]],[2019,"White","2 Gurleys 1 Kupp",[132.25,142.74,160.26,168.33,165.7,166.61,114.58,142.43,178.35,110.96,146.12,87.57,131.2]],[2019,"Yok","Boobs",[130.51,101.18,135.94,102.97,139.51,102.93,97.66,153.6,109.99,110.25,125.61,147.55,119.98]],[2019,"Zach","King of the JuJus",[150.61,96.12,79.57,153.41,135.16,131.3,172.4,140.68,105.59,159.61,121.15,124.91,197.64]],[2020,"Alex","Saltcabbage",[107.49,96.91,140.28,184.47,128.84,118.33,137.28,125.26,96.9,133.93,141.48,125.69,99.96]],[2020,"Brad","Batman and Dobbins",[108.08,127.2,95.22,92.62,154.41,95.44,136.14,123.94,129.94,135.55,123.38,143.23,87.82]],[2020,"Braiden","Chark Week",[166.05,202.66,151.31,120.89,119.1,110.37,142.32,118.5,143.05,129.59,107.42,154.16,134.52]],[2020,"Kunerth","Taste the Rainbow",[151.72,123.44,164.66,145.25,145.18,114.15,120.46,100.95,128.04,76.75,97.97,128.49,119.72]],[2020,"Kyle","Weather Bees",[136.23,137.04,124.68,132.91,122.7,70.22,156.79,155.71,182.24,129.51,129.49,126.72,139.25]],[2020,"Lamp","Michael Vick's Underdogs",[115.25,100.36,125.03,126.34,127.14,148.37,71.73,129.53,124.66,61.61,121.55,139.34,112.96]],[2020,"Layton","Black Lives Matter",[147.69,150.18,153.78,101.14,108.41,112.93,177.11,90.73,141.73,130.84,135.96,104.73,141.16]],[2020,"Stone","The Baby Seals",[148.76,171.65,124.43,121.07,154.07,138.12,126.57,131.19,127.48,141.34,132.36,160.82,156.16]],[2020,"TJ","Osh dogs",[135.21,177.96,96.11,128.99,90.27,92.81,88.45,141.28,114.69,104.11,113.59,89.6,120.76]],[2020,"White","Drew Lockdown",[94.31,131.57,125.19,158.33,106.99,100.81,134.75,139.27,121.49,153.73,149.14,107.29,132.96]],[2020,"Yok","Boobs",[120.8,136.51,123.54,105.52,124.19,124.45,118.14,95.0,101.75,86.0,119.55,75.51,96.38]],[2020,"Zach","Zeke and Destroy",[128.84,108.66,114.5,122.15,142.84,175.35,116.58,111.47,133.24,91.82,156.47,158.06,133.31]],[2021,"Alex","COLEVID-19",[175.0,202.8,185.44,181.22,167.14,213.16,70.79,112.64,159.99,169.82,172.03,109.52,221.77,146.67]],[2021,"Braiden","Diontaes Inferno",[155.78,147.93,170.52,180.67,183.01,129.52,172.04,181.23,143.33,114.25,116.24,100.78,149.62,141.89]],[2021,"Evan","Bishop Sycamore",[102.83,131.22,182.04,140.54,202.67,124.22,141.52,106.22,109.72,103.35,148.48,147.62,132.03,152.0]],[2021,"Hugh","Socially Aware Football Team",[160.6,114.01,155.47,125.37,137.6,142.17,109.09,136.96,103.31,100.24,109.34,164.35,115.75,178.27]],[2021,"Kunerth","Taste the Rainbow",[182.35,148.76,141.08,212.24,211.44,169.43,185.78,162.67,131.69,152.37,144.7,135.75,126.67,125.63]],[2021,"Kyle","Weather Bees",[148.14,111.37,160.72,108.85,112.81,181.91,133.01,131.05,121.09,137.06,113.95,150.02,146.2,154.57]],[2021,"Lamp","Michael Vick's Underdogs",[153.83,154.43,118.77,126.17,107.45,173.27,133.55,129.06,113.33,144.61,110.02,138.12,127.6,120.19]],[2021,"Layton","Purple Dinosaurs",[165.99,108.13,96.51,126.07,133.64,139.94,113.43,110.8,106.23,100.55,124.11,93.93,140.04,118.19]],[2021,"Stone","The Baby Seals",[102.82,158.35,119.99,121.42,151.01,139.35,146.84,171.21,81.95,116.27,119.69,146.63,140.36,165.99]],[2021,"TJ","Osh dogs",[181.31,185.19,155.7,126.97,165.66,154.9,159.34,141.27,153.19,173.44,121.15,101.98,145.86,207.27]],[2021,"White","Blue Waffle House",[174.64,155.59,107.73,119.89,169.64,147.43,174.94,162.45,159.39,109.07,181.23,115.0,117.64,116.43]],[2021,"Zach","The 2nd Half Nelsons",[193.09,120.32,120.24,126.41,146.28,159.22,163.45,172.49,153.95,88.35,100.19,137.54,95.07,135.47]],[2022,"Alex","Nose CLambs",[122.5,146.2,112.06,215.08,142.38,147.08,97.02,167.14,122.66,133.64,112.08,126.84,154.32,147.54]],[2022,"Braiden","Jalen Thee Stallion",[172.22,173.52,139.6,135.46,159.68,148.06,155.5,145.3,138.02,170.2,161.3,196.26,155.54,170.18]],[2022,"Evan","Jesse we need to Cook",[152.32,151.68,127.26,176.68,95.8,119.38,109.16,175.04,131.3,134.64,121.3,138.22,164.08,121.56]],[2022,"Hugh","Tuas TBI",[110.66,157.28,143.74,122.08,225.56,80.46,129.68,188.28,145.18,150.6,143.3,111.66,143.2,157.2]],[2022,"Kunerth","Taste the Rainbow",[136.64,103.58,140.02,130.2,144.2,124.4,91.04,104.06,92.8,101.12,131.9,116.04,154.24,82.54]],[2022,"Kyle","Weather Bees",[113.3,137.48,110.26,123.86,140.72,133.32,140.54,159.4,130.02,122.1,105.34,116.52,129.1,96.4]],[2022,"Lamp","Michael Vick's Underdogs",[116.46,109.6,113.74,155.16,113.32,116.2,144.86,124.14,177.6,131.28,159.02,124.72,100.74,78.32]],[2022,"Layton","Free Brittney Griner",[138.22,171.42,170.0,109.5,123.16,86.24,98.92,123.02,66.72,121.06,100.56,147.16,125.94,123.22]],[2022,"Stone","The Baby Seals",[153.52,121.86,121.48,109.78,103.38,166.2,180.64,162.54,108.12,96.1,131.9,127.6,96.84,181.46]],[2022,"TJ","Osh dogs",[157.06,129.66,148.9,195.0,154.62,79.32,151.92,111.62,104.6,115.74,132.2,171.56,136.58,135.18]],[2022,"White","Ass ETN Szn",[148.68,176.58,126.14,121.02,126.88,122.74,139.72,186.82,118.36,173.4,111.7,156.96,141.6,104.88]],[2022,"Zach","The 2nd Half Nelsons",[129.4,120.96,132.18,114.24,102.46,125.14,98.12,122.4,145.5,127.46,170.08,90.3,122.22,99.88]],[2023,"Alex","Power",[76.84,146.06,123.02,160.1,244.06,127.36,169.5,167.76,129.32,153.58,180.4,170.06,177.92,145.82]],[2023,"Braiden","Dobbenheimer",[134.6,146.82,118.28,157.92,116.06,93.4,142.56,139.76,159.36,132.04,110.44,176.7,140.22,150.78]],[2023,"Evan","The Mahome Depot",[126.84,156.74,131.5,117.12,85.84,113.84,127.36,134.7,112.8,120.7,118.88,171.42,137.7,174.82]],[2023,"Hugh","Tuas TBI",[161.06,91.0,141.06,104.36,174.88,143.24,128.74,163.48,88.18,102.82,132.74,132.08,140.32,103.54]],[2023,"Kunerth","Young Hoe Koonerth",[123.78,113.38,189.3,75.92,128.46,160.2,132.22,132.66,147.44,148.42,109.14,161.22,163.0,113.3]],[2023,"Kyle","Weather Bees",[117.56,135.58,174.34,135.64,125.34,121.72,95.98,124.68,113.68,118.34,171.86,146.28,87.64,130.94]],[2023,"Lamp","Michael Vick's Underdogs",[99.54,148.84,131.16,162.5,169.88,112.52,151.4,144.2,133.8,140.84,128.74,139.44,124.06,108.72]],[2023,"Layton","PRIME TIME",[121.42,122.4,159.46,134.02,105.62,165.1,134.6,124.76,113.62,139.12,117.46,112.16,81.34,136.12]],[2023,"Stone","The Baby Seals",[102.64,151.56,150.46,157.48,153.02,132.28,167.84,157.06,145.62,172.16,115.56,157.84,170.06,142.94]],[2023,"TJ","Osh dogs",[134.76,130.3,145.8,150.46,126.64,146.58,109.06,135.82,108.52,112.92,97.08,113.3,92.72,121.02]],[2023,"White","Anti-Najee Party",[149.54,157.44,159.66,125.48,93.6,119.24,176.36,152.08,121.8,144.9,121.04,151.16,158.82,121.76]],[2023,"Zach","The 2nd Half Nelsons",[126.88,124.32,111.44,151.52,143.28,121.2,87.08,135.76,123.58,130.46,148.72,122.66,159.76,145.52]],[2024,"Alex","CONKY",[195.06,146.54,136.16,160.02,149.92,137.58,145.64,158.16,140.26,106.58,170.58,160.96,120.02,148.02]],[2024,"Braiden","Palisade Peachecos",[104.28,171.3,133.72,145.88,146.5,180.14,137.22,185.3,160.36,124.54,149.28,103.12,190.7,137.1]],[2024,"Evan","Sun god Ra",[97.92,127.82,128.84,121.6,152.24,114.96,152.26,133.24,150.46,156.48,137.04,117.1,164.54,155.22]],[2024,"Hugh","Tuas TBI",[134.74,159.88,132.96,139.7,161.58,131.1,124.9,154.32,161.3,147.32,81.58,118.06,115.68,117.14]],[2024,"Kunerth","Please please please pay Jamar",[139.66,175.8,170.52,183.98,159.46,158.12,92.7,132.4,126.74,132.18,143.78,93.78,120.84,174.48]],[2024,"Kyle","Weather Bees",[173.82,125.36,112.28,94.64,121.06,81.66,73.26,113.62,143.82,138.76,134.88,108.02,117.68,184.52]],[2024,"Lamp","Michael Vick's Underdogs",[131.06,128.22,106.56,119.38,150.88,132.92,96.0,102.16,114.34,128.72,139.34,170.1,172.36,144.28]],[2024,"Layton","PRIME TIME",[114.94,124.14,139.66,125.4,118.16,97.1,117.16,133.3,127.1,119.34,127.54,144.1,120.5,127.08]],[2024,"Stone","The Baby Seals",[124.08,155.36,174.98,140.28,108.2,156.34,137.5,150.08,101.86,130.54,106.6,126.48,158.52,148.56]],[2024,"TJ","Osh dogs",[134.08,107.26,111.82,93.0,128.2,154.8,172.62,137.92,129.2,108.1,189.38,137.42,162.52,194.68]],[2024,"White","CeeDee's TITTIES",[121.26,128.52,110.86,164.74,152.88,98.52,106.36,190.2,148.3,104.14,145.34,156.56,127.34,115.4]],[2024,"Zach","The 2nd Half Nelsons",[123.84,132.66,133.08,95.92,156.76,127.8,124.36,162.34,173.16,122.7,146.54,178.06,130.36,145.56]],[2025,"Alex","JJet Life",[135.86,113.02,158.52,151.36,165.54,98.2,124.22,158.96,164.82,166.64,115.08,120.3,96.32,138.94]],[2025,"Braiden","Bucky Charms",[117.32,144.74,124.24,161.76,108.0,149.94,198.46,140.32,126.7,112.42,163.22,176.16,186.7,107.04]],[2025,"Evan","Meet me at The London",[135.58,165.88,128.32,142.92,153.24,168.06,149.92,130.88,204.3,158.2,162.04,162.14,91.54,139.58]],[2025,"Hugh","Tuas TBI",[147.82,113.0,115.68,157.2,143.62,140.18,108.62,174.02,107.6,106.74,100.04,107.18,139.7,134.28]],[2025,"Kunerth","Please please please pay Jamar",[136.42,147.56,140.06,140.0,141.6,137.84,132.82,91.64,133.72,104.8,91.12,91.18,86.32,176.62]],[2025,"Kyle","Weather Bees",[123.12,106.18,155.26,139.84,126.42,95.0,118.74,141.12,149.1,162.76,166.8,145.92,136.72,170.86]],[2025,"Lamp","Michael Vick's Underdogs",[100.6,136.12,133.76,172.06,125.72,109.38,98.96,138.28,140.96,134.6,108.0,172.78,76.64,101.12]],[2025,"Layton","PRIME TIME",[131.18,135.1,150.22,122.88,132.88,111.9,122.82,94.92,146.84,110.14,62.72,73.32,107.94,89.54]],[2025,"Stone","The Baby Seals",[111.08,129.3,147.72,168.82,118.42,140.04,126.98,111.64,161.16,130.9,121.34,113.96,123.88,109.32]],[2025,"TJ","Osh dogs",[109.02,177.26,131.48,92.82,139.22,165.84,119.04,141.34,124.66,156.22,124.0,105.26,164.3,143.04]],[2025,"White","CeeDee's TITTIES",[149.82,142.74,107.52,146.58,156.06,79.74,140.78,150.5,131.04,141.8,158.0,140.18,141.52,118.34]],[2025,"Zach","The 2nd Half Nelsons",[145.52,108.4,110.92,90.68,134.58,117.5,143.6,140.54,94.78,108.04,117.96,151.6,138.1,93.4]]]<\/script>
 <script id="s26" type="application/json">[
   {"mgr": "Alex", "user": "vanzante", "wins": 0, "losses": 0, "ties": 0, "pf": 0, "pa": 0, "totw": 0, "playoffPct": 50, "change": null, "qb": 0, "rb": 0, "wr": 0, "te": 0, "flx": 0, "k": 0, "idp": 0, "team": "JJet Life"},
   {"mgr": "Kunerth", "user": "akun", "wins": 0, "losses": 0, "ties": 0, "pf": 0, "pa": 0, "totw": 0, "playoffPct": 50, "change": null, "qb": 0, "rb": 0, "wr": 0, "te": 0, "flx": 0, "k": 0, "idp": 0, "team": "Please please please pay Jamar"},
@@ -2556,17 +2594,13 @@ async function loadLiveSleeperData(){
     }
   });
 
-  // All-play record (TOTW): each week, how many of the other 11 teams you outscored.
+  // TOTW (Team of the Week): number of weeks this season each team was the week's top scorer.
+  // An exact tie for the top score credits every tied team.
   for(let w=1; w<=completedWeeks; w++){
     const weekScores = Object.values(base).map(x=>({mgr:x.mgr, score:x.weeklyScores[w-1]})).filter(x=>x.score!=null);
-    weekScores.forEach(me => {
-      let wins = 0;
-      weekScores.forEach(other => {
-        if(other.mgr===me.mgr) return;
-        if(me.score>other.score) wins += 1; else if(me.score===other.score) wins += 0.5;
-      });
-      base[me.mgr].totw += wins;
-    });
+    if(!weekScores.length) continue;
+    const top = Math.max(...weekScores.map(x=>x.score));
+    weekScores.forEach(me => { if(me.score===top) base[me.mgr].totw += 1; });
   }
 
   // Rank-change trend vs the prior week's standings.
@@ -2618,23 +2652,10 @@ async function loadLiveSleeperData(){
   // ---------------------------------------------------------------------------
   const PRIOR_GAMES = 15;    // games of scoring evidence needed to half-trust a team's average
   const FALLBACK_SD = 25.0;  // league weekly stdev before any games are scored
-  const N_SIM = 4000;
+  const FALLBACK_AVG = 130;  // league weekly average before any games are scored
+  const N_SIM = 4000;        // current week
+  const N_SIM_PAST = 2000;   // each back-dated week in the forecast history table
   const mgrs = Object.values(base);
-
-  const allScores = [];
-  mgrs.forEach(x => x.weeklyScores.forEach(s => { if(s!=null) allScores.push(s); }));
-  const leagueAvg = allScores.length ? allScores.reduce((a,b)=>a+b,0)/allScores.length : 130;
-  const leagueSd = allScores.length > 1
-    ? Math.sqrt(allScores.reduce((a,b)=>a+(b-leagueAvg)*(b-leagueAvg),0)/(allScores.length-1))
-    : FALLBACK_SD;
-  const sd = (isFinite(leagueSd) && leagueSd > 1) ? leagueSd : FALLBACK_SD;
-
-  mgrs.forEach(x => {
-    const played = x.weeklyScores.filter(s=>s!=null);
-    const gp = played.length;
-    const teamAvg = gp ? played.reduce((a,b)=>a+b,0)/gp : leagueAvg;
-    x.projAvg = leagueAvg + (teamAvg - leagueAvg) * gp/(gp + PRIOR_GAMES);
-  });
 
   // Box-Muller, cached second deviate.
   let spare = null;
@@ -2646,33 +2667,138 @@ async function loadLiveSleeperData(){
     return r*Math.cos(th);
   }
 
-  const playoffCount = {}; mgrs.forEach(x => playoffCount[x.mgr]=0);
-  for(let sim=0; sim<N_SIM; sim++){
-    const simStats = {}; mgrs.forEach(x => { simStats[x.mgr] = {wins:0, losses:0, ties:0, pf:0}; });
-    for(let w=1; w<=regularSeasonWeeks; w++){
-      (schedule[w-1]||[]).forEach(pair => {
-        const mA=rosterToMgr[pair.a], mB=rosterToMgr[pair.b];
-        if(!mA||!mB||!base[mA]||!base[mB]) return;
-        let sa=base[mA].weeklyScores[w-1], sb=base[mB].weeklyScores[w-1];
-        if(sa==null) sa = Math.max(0, base[mA].projAvg + randn()*sd);
-        if(sb==null) sb = Math.max(0, base[mB].projAvg + randn()*sd);
-        simStats[mA].pf+=sa; simStats[mB].pf+=sb;
-        if(sa>sb){simStats[mA].wins++; simStats[mB].losses++;} else if(sa<sb){simStats[mB].wins++; simStats[mA].losses++;} else {simStats[mA].ties++; simStats[mB].ties++;}
-      });
-    }
-    // League seeding: wins (ties count half), then total points for.
-    Object.keys(simStats).sort((m1,m2) => {
-      const s1=simStats[m1], s2=simStats[m2];
-      return (s2.wins+0.5*s2.ties)-(s1.wins+0.5*s1.ties) || s2.pf-s1.pf;
-    }).slice(0, playoffTeams).forEach(mgr => { playoffCount[mgr]++; });
+  // ---------------------------------------------------------------------------
+  // 8-win anchor, from the "Playoff Prob" tab of the Favre Dolar Master Sheet.
+  // Rows = wins so far (0-7; 8+ wins = clinched), columns = weeks completed (0-13).
+  // Each value is scaled by a points multiplier based on standard deviations: every
+  // 1 SD of points-for above/below the league MEDIAN = +/-2.5% (so +/-2 SD = +/-5%).
+  // Median, not mean, so one runaway scorer can't make the middle of the pack look
+  // below average; the SD (spread) is the ordinary one, which stays steady early on.
+  // No fixed 5% ceiling -- a true outlier earns more -- but held to +/-10% (4 SD) as a
+  // safety rail. The anchored value is capped at 100%. Current-season record and points only.
+  //
+  // Final % = 70% anchor / 30% simulation (the sim adds remaining-schedule
+  // strength and catches teams that get in with fewer than 8 wins), then scaled
+  // so the league adds up to exactly playoffTeams. Teams the sim found clinched/
+  // eliminated in every run stay at 100/0. Displayed whole-number %s are rounded so
+  // every week adds up to exactly playoffTeams x 100. After week 13 the anchor has no
+  // column (the season is over), so the sim is used alone.
+  // ---------------------------------------------------------------------------
+  const ANCHOR_WEEKS = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+  const ANCHOR = [ // wk: 0 .. 13  (Playoff Prob tab, updated 10/20)
+    [0.5,0.45,0.38,0.33,0.2,0.1,0.05,0.01,0,0,0,0,0,0],   // 0 wins
+    [1,0.55,0.5,0.4,0.35,0.17,0.12,0.08,0.01,0,0,0,0,0],   // 1 wins
+    [1,1,0.62,0.6,0.5,0.38,0.22,0.14,0.1,0.01,0,0,0,0],   // 2 wins
+    [1,1,1,0.7,0.65,0.63,0.51,0.32,0.16,0.12,0.04,0,0,0],   // 3 wins
+    [1,1,1,1,0.82,0.78,0.72,0.65,0.5,0.28,0.14,0.05,0,0],   // 4 wins
+    [1,1,1,1,1,0.93,0.92,0.85,0.8,0.68,0.45,0.24,0.06,0],   // 5 wins
+    [1,1,1,1,1,1,0.98,0.94,0.9,0.89,0.85,0.68,0.42,0.23],   // 6 wins
+    [1,1,1,1,1,1,1,0.99,0.985,0.99,0.98,0.95,0.9,0.77]   // 7 wins
+  ]; // (cells where wins > weeks played can't happen; they're filled with 1)
+  const PTS_MULT_PER_SD = 0.025; // +/-2.5% per standard deviation of points for
+  const PTS_MULT_CAP = 0.10;     // safety rail: never more than +/-10%
+  const ANCHOR_WEIGHT = 0.7;   // anchor-heavy: injuries make past points a shaky guide
+  function anchorProb(wins, week){
+    const col = ANCHOR_WEEKS.indexOf(week);
+    if(col < 0) return null;
+    const row = w => w >= 8 ? 1 : ANCHOR[Math.max(0, w)][col];
+    const lo = Math.floor(wins), f = wins - lo;   // a tie counts as half a win
+    return row(lo)*(1-f) + row(lo+1)*f;
   }
-  mgrs.forEach(x => {
-    const c = playoffCount[x.mgr];
-    let pct = Math.round(c/N_SIM*100);
-    if(pct===100 && c<N_SIM) pct = 99;   // don't claim certainty the sim didn't find
-    if(pct===0 && c>0) pct = 1;
-    x.playoffPct = pct;
-  });
+
+  // Whole-number %s that add up to exactly playoffTeams*100 (largest-remainder rounding).
+  // Teams not mathematically settled stay between 1 and 99.
+  function roundToTotal(items){
+    const target = playoffTeams*100, out = {};
+    items.forEach(it => { it.lo = it.locked ? Math.round(it.v) : 1; it.hi = it.locked ? Math.round(it.v) : 99;
+      it.p = Math.min(it.hi, Math.max(it.lo, Math.floor(it.v))); it.r = it.v - Math.floor(it.v); });
+    let diff = target - items.reduce((t,it) => t + it.p, 0), guard = 0;
+    while(diff !== 0 && guard++ < 2000){
+      const up = diff > 0;
+      const pool = items.filter(it => up ? it.p < it.hi : it.p > it.lo);
+      if(!pool.length) break;
+      // add to the biggest leftover fraction first; take from the smallest
+      pool.sort((x,y) => up ? (y.r - x.r) || (y.v - x.v) : (x.r - y.r) || (x.v - y.v));
+      pool[0].p += up ? 1 : -1; pool[0].r += up ? -1 : 1; diff += up ? -1 : 1;
+    }
+    items.forEach(it => { out[it.mgr] = it.p; });
+    return out;
+  }
+
+  // Playoff % for every team as it would have read after week k (k = 0 is preseason):
+  // only games through week k are treated as played; everything after is simulated.
+  function oddsAsOf(k, nSim){
+    const known = (m, w) => w <= k ? base[m].weeklyScores[w-1] : null;
+    const seen = [];
+    mgrs.forEach(x => { for(let w=1; w<=k; w++){ const v = known(x.mgr, w); if(v!=null) seen.push(v); } });
+    const lgAvg = seen.length ? seen.reduce((a,b)=>a+b,0)/seen.length : FALLBACK_AVG;
+    const lgSd = seen.length > 1 ? Math.sqrt(seen.reduce((a,b)=>a+(b-lgAvg)*(b-lgAvg),0)/(seen.length-1)) : FALLBACK_SD;
+    const sd = (isFinite(lgSd) && lgSd > 1) ? lgSd : FALLBACK_SD;
+    const proj = {};
+    mgrs.forEach(x => {
+      const played = []; for(let w=1; w<=k; w++){ const v = known(x.mgr, w); if(v!=null) played.push(v); }
+      const gp = played.length, teamAvg = gp ? played.reduce((a,b)=>a+b,0)/gp : lgAvg;
+      proj[x.mgr] = lgAvg + (teamAvg - lgAvg) * gp/(gp + PRIOR_GAMES);
+    });
+
+    const count = {}; mgrs.forEach(x => count[x.mgr] = 0);
+    for(let sim=0; sim<nSim; sim++){
+      const st = {}; mgrs.forEach(x => { st[x.mgr] = {wins:0, ties:0, pf:0}; });
+      for(let w=1; w<=regularSeasonWeeks; w++){
+        (schedule[w-1]||[]).forEach(pair => {
+          const mA=rosterToMgr[pair.a], mB=rosterToMgr[pair.b];
+          if(!mA||!mB||!base[mA]||!base[mB]) return;
+          let sa=known(mA, w), sb=known(mB, w);
+          if(sa==null) sa = Math.max(0, proj[mA] + randn()*sd);
+          if(sb==null) sb = Math.max(0, proj[mB] + randn()*sd);
+          st[mA].pf+=sa; st[mB].pf+=sb;
+          if(sa>sb) st[mA].wins++; else if(sa<sb) st[mB].wins++; else { st[mA].ties++; st[mB].ties++; }
+        });
+      }
+      // League seeding: wins (ties count half), then total points for.
+      Object.keys(st).sort((m1,m2) => (st[m2].wins+0.5*st[m2].ties)-(st[m1].wins+0.5*st[m1].ties) || st[m2].pf-st[m1].pf)
+        .slice(0, playoffTeams).forEach(m => { count[m]++; });
+    }
+
+    const snap = standingsAsOf(k), rec = {};
+    snap.forEach(r => { rec[r.mgr] = r; });
+    const pfAvg = snap.reduce((t,r) => t + r.pf, 0) / snap.length;
+    const pfSd = Math.sqrt(snap.reduce((t,r) => t + (r.pf - pfAvg)*(r.pf - pfAvg), 0) / snap.length);
+    const pfSorted = snap.map(r => r.pf).sort((x,y) => x - y), mid = pfSorted.length >> 1;
+    const pfMed = pfSorted.length % 2 ? pfSorted[mid] : (pfSorted[mid-1] + pfSorted[mid]) / 2;
+    const odds = mgrs.map(x => {
+      const c = count[x.mgr], sim = c/nSim, r = rec[x.mgr];
+      const a0 = anchorProb(r.wins + 0.5*r.ties, k);
+      const z = pfSd > 0 ? (r.pf - pfMed) / pfSd : 0;
+      const mult = 1 + Math.max(-PTS_MULT_CAP, Math.min(PTS_MULT_CAP, PTS_MULT_PER_SD * z));
+      const blend = a0 == null ? sim : ANCHOR_WEIGHT*Math.min(1, a0*mult) + (1-ANCHOR_WEIGHT)*sim;
+      return {mgr:x.mgr, sim, blend, locked: c === 0 || c === nSim};
+    });
+    // Scale the open teams so the whole league sums to playoffTeams (no one over 100%).
+    const lockedSum = odds.filter(o => o.locked).reduce((t,o) => t + o.sim, 0);
+    const open = odds.filter(o => !o.locked);
+    let kLo = 0, kHi = 20;
+    for(let i=0; i<60; i++){
+      const kk = (kLo + kHi)/2, tot = open.reduce((t,o) => t + Math.min(1, kk*o.blend), 0);
+      if(tot > playoffTeams - lockedSum) kHi = kk; else kLo = kk;
+    }
+    return roundToTotal(odds.map(o => ({mgr:o.mgr, locked:o.locked, v:(o.locked ? o.sim : Math.min(1, kLo*o.blend))*100})));
+  }
+
+  const nowOdds = oddsAsOf(completedWeeks, N_SIM);
+  mgrs.forEach(x => { x.playoffPct = nowOdds[x.mgr]; });
+  // Back-dated forecast, preseason (week 0) through the current week, for the history table.
+  const oddsHistory = {weeks: [], byMgr: {}};
+  mgrs.forEach(x => { oddsHistory.byMgr[x.mgr] = []; });
+  for(let k=0; k<=completedWeeks; k++){
+    let o;
+    if(k === completedWeeks) o = nowOdds;
+    else if(k === 0) o = roundToTotal(mgrs.map(x => ({mgr:x.mgr, locked:false, v:100*playoffTeams/mgrs.length})));  // preseason: every team identical
+    else o = oddsAsOf(k, N_SIM_PAST);
+    oddsHistory.weeks.push(k);
+    mgrs.forEach(x => { oddsHistory.byMgr[x.mgr].push(o[x.mgr]); });
+  }
+  window.fdfOddsHistory = oddsHistory;
 
   document.getElementById('standingsTitle').textContent = completedWeeks > 0 ? ('Standings Wk' + completedWeeks) : 'Standings';
   window.fdfCompletedWeeks = completedWeeks; if(window.fdfRenderPlayoffOdds) window.fdfRenderPlayoffOdds(completedWeeks);
@@ -2787,6 +2913,8 @@ loadLiveSleeperData().then(({mgrs, gowSchedule}) => {
   renderStandingsAndPos(mgrs);
   if(window.__gowRefresh) window.__gowRefresh(gowSchedule);
   try{ if(window.__muRefresh) window.__muRefresh(mgrs, gowSchedule); else window.__muPending = [mgrs, gowSchedule]; }catch(e){ console.error('Matchups section failed:', e); }
+  try{ if(window.__cuRefresh) window.__cuRefresh(mgrs, gowSchedule); else window.__cuPending = [mgrs, gowSchedule]; }catch(e){ console.error('Scoring pace section failed:', e); }
+  try{ if(window.__phRefresh) window.__phRefresh(window.fdfOddsHistory); else window.__phPending = [window.fdfOddsHistory]; }catch(e){ console.error('Odds history section failed:', e); }
 }).catch(err => {
   console.error('Sleeper live fetch failed, showing placeholder data:', err);
 });
@@ -3346,8 +3474,10 @@ const GOW_PHOTOS = {
 
   function avHtml(m, side){
     var photos = (typeof GOW_PHOTOS !== 'undefined') ? GOW_PHOTOS : {};
-    return '<div class="mu-av ' + side + '">' + (photos[m] ? '<img src="' + photos[m] + '" alt="' + esc(m) + '">' : esc(m.charAt(0))) + '</div>';
+    return '<div class="mu-avw"><div class="mu-av ' + side + '">' + (photos[m] ? '<img src="' + photos[m] + '" alt="' + esc(m) + '">' : esc(m.charAt(0))) + '</div><div class="mu-avn">' + esc(MU_SHORT[m] || m) + '</div></div>';
   }
+  // Short manager names shown under the photo (anyone not listed uses their key as-is).
+  var MU_SHORT = {Braiden:'Brai', Kunerth:'Kun'};
   function sideHtml(m, side, byMgr, seed){
     var x = byMgr[m];
     var rec = (x.wins || 0) + '-' + (x.losses || 0) + (x.ties ? '-' + x.ties : '');
@@ -3406,6 +3536,83 @@ const GOW_PHOTOS = {
     fitNames();
   };
   if(window.__muPending){ window.__muRefresh.apply(null, window.__muPending); window.__muPending = null; }
+})();
+<\/script>
+<script>
+// ALL-TIME SCORING PACE: top 5 cumulative regular-season totals through each week.
+// 2011-2025 weekly scores are baked into cuData; this season's completed weeks come from the live Sleeper pull.
+(function(){
+  var HIST = JSON.parse(document.getElementById('cuData').textContent);
+  var SHORT = {Braiden:'Brai', Kunerth:'Kun'};
+  var body = document.getElementById('cuBody');
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function fmt(n){ return n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+  function render(cur){
+    var teams = HIST.concat(cur || []), maxW = 0;
+    teams.forEach(function(t){ if(t[3].length > maxW) maxW = t[3].length; });
+    var h = '';
+    for(var w = 1; w <= maxW; w++){
+      var c = [];
+      teams.forEach(function(t){
+        if(t[3].length < w) return;
+        var sum = 0; for(var i = 0; i < w; i++) sum += t[3][i];
+        c.push({y:t[0], m:t[1], tn:t[2], s:sum, now:!!t[4]});
+      });
+      c.sort(function(a, b){ return b.s - a.s; });
+      h += '<tr><td class="wk">' + w + '</td>' + c.slice(0, 5).map(function(x){
+        return '<td class="' + (x.now ? 'now' : '') + '" title="' + esc(x.tn) + '"><span class="who"><i>' + x.y + '</i> ' + esc(SHORT[x.m] || x.m)
+          + '</span><span class="pts">' + fmt(x.s) + '</span></td>';
+      }).join('') + '</tr>';
+    }
+    body.innerHTML = h;
+  }
+  window.__cuRefresh = function(M_, sched){
+    var cw = window.fdfCompletedWeeks || 0, sc = {}, tn = {};
+    (M_ || []).forEach(function(x){ tn[x.mgr] = x.team || ''; });
+    for(var w = 1; w <= cw; w++){
+      (sched && sched[w] || []).forEach(function(p){
+        if(p.scoreA == null || p.scoreB == null) return;
+        (sc[p.a] = sc[p.a] || [])[w-1] = +p.scoreA;
+        (sc[p.b] = sc[p.b] || [])[w-1] = +p.scoreB;
+      });
+    }
+    var cur = [];
+    Object.keys(sc).forEach(function(m){
+      var arr = sc[m], ok = arr.length === cw;
+      for(var i = 0; i < arr.length; i++) if(typeof arr[i] !== 'number') ok = false;
+      if(ok && cw > 0) cur.push([2026, m, tn[m] || '', arr, true]);
+    });
+    render(cur);
+  };
+  render(null);
+  if(window.__cuPending){ window.__cuRefresh.apply(null, window.__cuPending); window.__cuPending = null; }
+})();
+<\/script>
+<script>
+// PLAYOFF ODDS BY WEEK: the PLYF % model re-run as of every completed week (0 = preseason).
+(function(){
+  var SHORT = {Braiden:'Brai', Kunerth:'Kun'};
+  var wrap = document.getElementById('phWrap'), head = document.getElementById('phHead'), body = document.getElementById('phBody');
+  function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  // White -> FDF blue as the odds climb; dark text until the fill gets deep.
+  function cell(p){
+    var t = Math.max(0, Math.min(100, p))/100;
+    var r = Math.round(255 + (63-255)*t), g = Math.round(255 + (147-255)*t), b = Math.round(255 + (223-255)*t);
+    return 'background:rgb(' + r + ',' + g + ',' + b + ');color:' + (t > 0.62 ? '#ffffff' : '#0b0b0d');
+  }
+  window.__phRefresh = function(H){
+    if(!H || !H.weeks || !H.weeks.length){ wrap.hidden = true; return; }
+    var last = H.weeks.length - 1;
+    var mg = Object.keys(H.byMgr).sort(function(a, b){ return H.byMgr[b][last] - H.byMgr[a][last] || a.localeCompare(b); });
+    head.innerHTML = '<tr><th class="mg">Team</th>' + H.weeks.map(function(w){ return '<th>Wk' + w + '</th>'; }).join('') + '</tr>';
+    body.innerHTML = mg.map(function(m){
+      return '<tr><td class="mg">' + esc(SHORT[m] || m) + '</td>' + H.byMgr[m].map(function(p, i){
+        return '<td class="' + (i === last ? 'cur' : '') + '" style="' + cell(p) + '">' + p + '%</td>';
+      }).join('') + '</tr>';
+    }).join('');
+    wrap.hidden = false;
+  };
+  if(window.__phPending){ window.__phRefresh.apply(null, window.__phPending); window.__phPending = null; }
 })();
 <\/script>
 </body></html></script><script type="text/html" id="src-drafttrends"><!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
