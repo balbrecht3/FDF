@@ -2407,6 +2407,28 @@ render();
   .ex-frame .ex-scope{margin:0!important;padding:0!important;border:0!important;max-width:none!important;width:auto!important;transform:none!important;background:none!important}
   .ex-frame .ex-logo{position:absolute;left:0;right:0;text-align:center;line-height:0}
   .ex-frame .ex-logo img{width:auto;opacity:.92}
+  .sx-sec{margin-top:34px}
+  .sx-sec .ig-title{margin-bottom:12px}
+  .sx-panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 10px 8px;max-width:620px;margin:0 auto}
+  .sx-panel svg{display:block;width:100%;height:auto}
+  .sx-panel svg text{font-family:inherit;fill:var(--dim);font-size:15px}
+  .sx-card{max-width:620px;margin:0 auto;overflow-x:auto;border-radius:14px;background:linear-gradient(180deg,#fafbfc 0%,#e6e9ee 100%);box-shadow:0 2px 12px rgba(155,165,180,.32)}
+  .sx-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;color:#0b0b0d}
+  .sx-tbl thead th{background:#3f93df;color:#fff;font-size:11px;letter-spacing:.5px;text-transform:uppercase;font-weight:800;padding:9px 4px;border-bottom:0;white-space:nowrap}
+  .sx-tbl td{padding:7px 5px;text-align:center;border-bottom:1px solid #e1e5ea;font-size:12.5px;font-weight:700;white-space:nowrap;color:#0b0b0d}
+  .sx-tbl tbody tr:nth-child(even) td{background:rgba(15,30,60,.035)}
+  .sx-tbl tbody tr:last-child td{border-bottom:0}
+  .sx-tbl .l{text-align:left}
+  .sx-tbl td.mg{font-weight:900;text-align:left;padding-left:10px}
+  .sx-tbl td.rk{color:#8a95a6;font-weight:800}
+  .sx-tbl td.dim{color:#5d6878;font-weight:700}
+  .sx-tbl td.big{font-size:14px;font-weight:900}
+  .sx-tbl .up{color:#1a7f37} .sx-tbl .dn{color:#d1242f}
+  .sx-tbl td.nm{max-width:150px;overflow:hidden;text-overflow:ellipsis;text-align:left}
+  .sx-heat td{padding:7px 2px;font-size:11.5px;min-width:38px}
+  .sx-heat td.top{box-shadow:inset 0 0 0 2px #0b0b0d}
+  .sx-cap{text-align:center;color:var(--dim);font-size:12px;line-height:1.4;margin:9px auto 0;max-width:420px}
+  .sx-cap b{color:var(--txt)}
 </style></head><body>
 <div class="wrap">
   <h1><span>FDF</span> 2026 HQ</h1>
@@ -2499,6 +2521,56 @@ render();
     <div class="pw-box"><svg id="pwChart" viewBox="0 0 600 320" role="img" aria-label="Average points per game by week, all-time vs 2026"></svg></div>
     <div class="pw-read" id="pwRead"></div>
     <div class="ig-logo"><img id="pwLogo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Luck-Chart" hidden>
+    <h2 class="ig-title">Luck Chart</h2>
+    <div class="sx-body" id="sxLuck"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="All-Play-Standings" hidden>
+    <h2 class="ig-title">All-Play<br>Standings</h2>
+    <div class="sx-body" id="sxAllPlay"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Weekly-Scores-Heat-Map" hidden>
+    <h2 class="ig-title">Weekly Scores</h2>
+    <div class="sx-body" id="sxHeat"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Standings-Race" hidden>
+    <h2 class="ig-title">Standings Race</h2>
+    <div class="sx-body" id="sxRace"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Playoff-Picture" hidden>
+    <h2 class="ig-title">Playoff Picture</h2>
+    <div class="sx-body" id="sxBracket"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Lineup-IQ" hidden>
+    <h2 class="ig-title">Lineup IQ</h2>
+    <div class="sx-body" id="sxIQ"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Lost-It-on-the-Bench" hidden>
+    <h2 class="ig-title">Lost It on<br>the Bench</h2>
+    <div class="sx-body" id="sxBench"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Team-MVPs" hidden>
+    <h2 class="ig-title">Team MVPs</h2>
+    <div class="sx-body" id="sxMVP"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Top-Performances" hidden>
+    <h2 class="ig-title">Top<br>Performances</h2>
+    <div class="sx-body" id="sxTop"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
+  </div>
+  <div class="sx-sec" data-name="Waiver-Wire-Warriors" hidden>
+    <h2 class="ig-title">Waiver Wire<br>Warriors</h2>
+    <div class="sx-body" id="sxWaiver"></div>
+    <div class="ig-logo"><img class="sx-logo" alt="Favre Dolar Fantasy"></div>
   </div>
   <div class="ex-wrap" id="exWrap">
     <button type="button" class="ex-btn" id="exBtn">Download Instagram Images</button>
@@ -3279,7 +3351,10 @@ const GOW_PHOTOS = {
     return (h >>> 0).toString(36);
   }
 
-  function slLoadPlayers(){
+  var slPlayersP = null;
+  function slLoadPlayers(){ return slPlayersP || (slPlayersP = slLoadPlayers0().catch(function(e){ slPlayersP = null; throw e; })); }
+  window.__fdfLoadPlayers = slLoadPlayers;
+  function slLoadPlayers0(){
     var raw = slGet(SL_PLAYERS_KEY);
     if(raw){
       try{
@@ -3798,6 +3873,7 @@ const GOW_PHOTOS = {
     var cu = q('#cuWrap'); add('All-Time-Scoring-Pace', 'cu-wrap', [inside(cu, '.ig-title'), inside(cu, '.cu-box')]);
     var ph = q('#phWrap'); add('Playoff-Odds-by-Week', 'ph-wrap', [inside(ph, '.ig-title'), inside(ph, '.ph-box')]);
     var pw = q('#pwWrap'); add('Points-per-Game-by-Week', 'pw-wrap', [inside(pw, '.ig-title'), inside(pw, '.pw-legend'), inside(pw, '.pw-box'), q('#pwRead')]);
+    document.querySelectorAll('.sx-sec').forEach(function(sec){ add(sec.getAttribute('data-name'), 'sx-sec', [inside(sec, '.ig-title'), inside(sec, '.sx-body')]); });
     return out;
   }
 
@@ -3915,6 +3991,354 @@ const GOW_PHOTOS = {
   document.addEventListener('change', function(e){ if(!e.target.closest('#exWrap')) reset(); });
   function reset(){ if(!ready) return; ready = false; btn.textContent = 'Download Instagram Images'; stat.textContent = ''; grid.innerHTML = ''; }
   window.__exReset = reset;
+})();
+<\/script>
+<script>
+// SEASON EXTRAS: ten shareable visuals built from this season's live Sleeper data -- every
+// matchup (including each rostered player's points, bench too), the rosters and the transaction log.
+// Each section stays hidden until its data is in; all of them are picked up by the Instagram export.
+(function(){
+  var SHORT = {Braiden:'Brai', Kunerth:'Kun'};
+  var PALETTE = ['#7cc4ff','#ff7a18','#2ea043','#f85149','#a78bfa','#f2cc60','#3fb8af','#ff6bcb','#9be15d','#58a6ff','#ffa657','#e6edf3'];
+  var ELIG = {QB:['QB'],RB:['RB'],WR:['WR'],TE:['TE'],FLEX:['RB','WR','TE'],SUPER_FLEX:['QB','RB','WR','TE'],WRRB_FLEX:['RB','WR'],REC_FLEX:['WR','TE'],K:['K'],DL:['DL'],LB:['LB'],DB:['DB'],IDP_FLEX:['DL','LB','DB']};
+  function nm(m){ return SHORT[m] || m; }
+  function esc(t){ return String(t == null ? '' : t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function f1(n){ return (Math.round(n * 10) / 10).toFixed(1); }
+  function sgn(n){ var v = Math.round(n * 10) / 10; return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(1); }
+  function range(a, b){ var o = []; for(var i = a; i <= b; i++) o.push(i); return o; }
+  function getJSON(u){ return fetch(u).then(function(r){ if(!r.ok) throw new Error('Sleeper ' + r.status); return r.json(); }); }
+  function rec(t){ return t.w + '-' + t.l + (t.t ? '-' + t.t : ''); }
+
+  var logo = document.querySelector('.ig-logo img[src]');
+  document.querySelectorAll('.sx-logo').forEach(function(l){ if(logo) l.src = logo.getAttribute('src'); });
+
+  function show(id, html){
+    var el = document.getElementById(id); if(!el) return;
+    el.innerHTML = html; el.closest('.sx-sec').hidden = false;
+  }
+  function safe(fn){ try{ fn(); }catch(e){ console.error('Season extras section failed:', e); } }
+
+  // Best possible lineup for one team-week: highest scorers first, each into its own position's
+  // slot if one is open, otherwise into a flex it qualifies for.
+  function optimal(e, slots, players){
+    var pp = e.players_points || {};
+    var pl = (e.players || []).map(function(id){ return {pts:+pp[id] || 0, pos:(players[id] || [])[1]}; })
+      .filter(function(p){ return p.pos; }).sort(function(a, b){ return b.pts - a.pts; });
+    var open = slots.slice(), tot = 0;
+    pl.forEach(function(p){
+      var i = open.indexOf(p.pos);
+      if(i < 0) i = open.findIndex(function(s){ return (ELIG[s] || []).indexOf(p.pos) >= 0; });
+      if(i >= 0){ open.splice(i, 1); tot += p.pts; }
+    });
+    return Math.max(tot, +e.points || 0);
+  }
+
+  function standingsAfter(T, k){
+    return Object.keys(T).map(function(m){
+      var t = T[m], o = {m:m, w:0, l:0, t:0, pf:0};
+      for(var i = 0; i < k; i++){
+        var r = t.res[i]; if(r === 'W') o.w++; else if(r === 'L') o.l++; else if(r === 'T') o.t++;
+        o.pf += t.sc[i] || 0;
+      }
+      return o;
+    }).sort(function(a, b){ return b.w - a.w || b.t - a.t || b.pf - a.pf || a.m.localeCompare(b.m); });
+  }
+
+  function ticks(lo, hi, n){
+    var raw = (hi - lo) / n, p = Math.pow(10, Math.floor(Math.log10(raw)));
+    var st = [1, 2, 2.5, 5, 10].map(function(k){ return k * p; }).find(function(k){ return k >= raw; }) || raw;
+    var out = []; for(var v = Math.ceil(lo / st) * st; v <= hi + 1e-9; v += st) out.push(Math.round(v * 1e6) / 1e6);
+    return out;
+  }
+  // Push overlapping point labels apart vertically.
+  function declutter(labels, minDy, minDx){
+    for(var it = 0; it < 60; it++){
+      var moved = false;
+      labels.sort(function(a, b){ return a.y - b.y; });
+      for(var i = 0; i < labels.length; i++) for(var j = i + 1; j < labels.length; j++){
+        var a = labels[i], b = labels[j];
+        if(Math.abs(a.x - b.x) < minDx && b.y - a.y < minDy){ var d = (minDy - (b.y - a.y)) / 2; a.y -= d; b.y += d; moved = true; }
+      }
+      if(!moved) break;
+    }
+  }
+  function heatColor(t){ // 0 = best (green) .. 0.5 white .. 1 = worst (red)
+    var g = [99, 190, 123], w = [255, 255, 255], r = [248, 105, 107], a, b, k;
+    if(t <= .5){ a = g; b = w; k = t / .5; } else { a = w; b = r; k = (t - .5) / .5; }
+    return 'rgb(' + a.map(function(v, i){ return Math.round(v + (b[i] - v) * k); }).join(',') + ')';
+  }
+
+  // ---- 1. Luck chart: points for vs points against ----
+  function luckChart(T){
+    var A = Object.values(T), W = 600, H = 440, L = 62, R = 22, TP = 20, B = 54;
+    var xs = A.map(function(t){ return t.pf; }), ys = A.map(function(t){ return t.pa; });
+    function pad(a){ var lo = Math.min.apply(null, a), hi = Math.max.apply(null, a), d = (hi - lo) * .14 || 20; return [lo - d, hi + d]; }
+    var xr = pad(xs), yr = pad(ys), avg = xs.reduce(function(s, v){ return s + v; }, 0) / xs.length;
+    function X(v){ return L + (v - xr[0]) * (W - L - R) / (xr[1] - xr[0]); }
+    function Y(v){ return TP + (yr[1] - v) * (H - TP - B) / (yr[1] - yr[0]); }
+    var s = '';
+    ticks(xr[0], xr[1], 5).forEach(function(v){ s += '<line x1="' + X(v) + '" x2="' + X(v) + '" y1="' + TP + '" y2="' + (H - B) + '" stroke="#222a36"/><text x="' + X(v) + '" y="' + (H - B + 20) + '" text-anchor="middle">' + v + '</text>'; });
+    ticks(yr[0], yr[1], 5).forEach(function(v){ s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#222a36"/><text x="' + (L - 8) + '" y="' + (Y(v) + 5) + '" text-anchor="end">' + v + '</text>'; });
+    s += '<line x1="' + X(avg) + '" x2="' + X(avg) + '" y1="' + TP + '" y2="' + (H - B) + '" stroke="#93a1b3" stroke-dasharray="4 4"/>';
+    s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + Y(avg) + '" y2="' + Y(avg) + '" stroke="#93a1b3" stroke-dasharray="4 4"/>';
+    var q = 'font-size:13px;font-weight:800;letter-spacing:1px';
+    s += '<text x="' + (L + 8) + '" y="' + (TP + 18) + '" style="' + q + ';fill:#f85149">BAD &amp; UNLUCKY</text>';
+    s += '<text x="' + (W - R - 8) + '" y="' + (TP + 18) + '" text-anchor="end" style="' + q + ';fill:#f2cc60">GOOD BUT UNLUCKY</text>';
+    s += '<text x="' + (L + 8) + '" y="' + (H - B - 10) + '" style="' + q + ';fill:#f2cc60">BAD BUT LUCKY</text>';
+    s += '<text x="' + (W - R - 8) + '" y="' + (H - B - 10) + '" text-anchor="end" style="' + q + ';fill:#2ea043">GOOD &amp; LUCKY</text>';
+    s += '<text x="' + ((L + W - R) / 2) + '" y="' + (H - 6) + '" text-anchor="middle" style="font-size:13px;letter-spacing:1px">POINTS FOR</text>';
+    s += '<text transform="translate(16 ' + ((TP + H - B) / 2) + ') rotate(-90)" text-anchor="middle" style="font-size:13px;letter-spacing:1px">POINTS AGAINST</text>';
+    var labels = A.map(function(t){ var x = X(t.pf), right = x < W - R - 70; return {x:x + (right ? 10 : -10), y:Y(t.pa) + 5, anchor:right ? 'start' : 'end', t:t, dx:x, dy:Y(t.pa)}; });
+    declutter(labels, 16, 70);
+    labels.forEach(function(l){
+      s += '<circle cx="' + l.dx + '" cy="' + l.dy + '" r="6.5" fill="#7cc4ff" stroke="#161b22" stroke-width="2"/>';
+      s += '<text x="' + l.x + '" y="' + l.y + '" text-anchor="' + l.anchor + '" style="fill:#e6edf3;font-weight:700;font-size:14px">' + esc(nm(l.t.m)) + '</text>';
+    });
+    show('sxLuck', '<div class="sx-panel"><svg viewBox="0 0 ' + W + ' ' + H + '">' + s + '</svg></div>'
+      + '<div class="sx-cap">Dashed lines = league average</div>');
+  }
+
+  // ---- 2. All-play standings ----
+  function allPlay(T, cw){
+    var ms = Object.keys(T), rows = ms.map(function(m){
+      var w = 0, l = 0, ti = 0;
+      for(var k = 0; k < cw; k++){
+        var me = T[m].sc[k]; if(me == null) continue;
+        ms.forEach(function(o){ if(o === m || T[o].sc[k] == null) return; var v = T[o].sc[k]; if(me > v) w++; else if(me < v) l++; else ti++; });
+      }
+      var pct = (w + ti / 2) / Math.max(1, w + l + ti), games = T[m].w + T[m].l + T[m].t;
+      return {m:m, t:T[m], aw:w, al:l, at:ti, pct:pct, luck:(T[m].w + T[m].t / 2) - pct * games};
+    }).sort(function(a, b){ return b.pct - a.pct || a.m.localeCompare(b.m); });
+    var h = '<div class="sx-card"><table class="sx-tbl"><thead><tr><th>#</th><th class="l" style="padding-left:10px">MGR</th><th>Record</th><th>All-Play</th><th>Win %</th><th>Luck</th></tr></thead><tbody>';
+    rows.forEach(function(r, i){
+      h += '<tr><td class="rk">' + (i + 1) + '</td><td class="mg">' + esc(nm(r.m)) + '</td><td>' + rec(r.t) + '</td><td class="dim">' + r.aw + '-' + r.al + (r.at ? '-' + r.at : '') + '</td><td class="big">' + Math.round(r.pct * 100) + '%</td>'
+        + '<td class="' + (r.luck > .05 ? 'up' : r.luck < -.05 ? 'dn' : '') + '">' + sgn(r.luck) + '</td></tr>';
+    });
+    show('sxAllPlay', h + '</tbody></table></div><div class="sx-cap">Your record if you played all 11 teams every week. Luck = actual wins minus expected wins.</div>');
+  }
+
+  // ---- 3. Weekly scores heat map ----
+  function heatMap(T, cw){
+    var ms = Object.keys(T).sort(function(a, b){ return T[b].pf - T[a].pf || a.localeCompare(b); });
+    var rank = [];
+    for(var k = 0; k < cw; k++){
+      var col = ms.filter(function(m){ return T[m].sc[k] != null; }).sort(function(a, b){ return T[b].sc[k] - T[a].sc[k]; });
+      rank[k] = {}; col.forEach(function(m, i){ rank[k][m] = {r:i, n:col.length}; });
+    }
+    var h = '<div class="sx-card"><table class="sx-tbl sx-heat"><thead><tr><th class="l" style="padding-left:10px">MGR</th>' + range(1, cw).map(function(w){ return '<th>Wk' + w + '</th>'; }).join('') + '<th>Avg</th></tr></thead><tbody>';
+    ms.forEach(function(m){
+      h += '<tr><td class="mg">' + esc(nm(m)) + '</td>';
+      for(var k = 0; k < cw; k++){
+        var v = T[m].sc[k], rk = rank[k][m];
+        if(v == null || !rk){ h += '<td>–</td>'; continue; }
+        h += '<td class="' + (rk.r === 0 ? 'top' : '') + '" style="background:' + heatColor(rk.r / Math.max(1, rk.n - 1)) + '">' + f1(v) + '</td>';
+      }
+      h += '<td class="big">' + f1(T[m].pf / Math.max(1, cw)) + '</td></tr>';
+    });
+    show('sxHeat', h + '</tbody></table></div><div class="sx-cap">Green = top scores that week, red = bottom. Outlined = the week’s high score.</div>');
+  }
+
+  // ---- 4. Standings race (bump chart) ----
+  function race(T, cw){
+    var ms = Object.keys(T).sort(), n = ms.length, color = {};
+    ms.forEach(function(m, i){ color[m] = PALETTE[i % PALETTE.length]; });
+    var pos = {}; ms.forEach(function(m){ pos[m] = []; });
+    for(var k = 1; k <= cw; k++) standingsAfter(T, k).forEach(function(o, i){ pos[o.m][k - 1] = i + 1; });
+    var W = 600, H = 460, L = 40, R = 86, TP = 22, B = 40;
+    function X(k){ return cw === 1 ? (L + W - R) / 2 : L + (k - 1) * (W - L - R) / (cw - 1); }
+    function Y(r){ return TP + (r - 1) * (H - TP - B) / Math.max(1, n - 1); }
+    var s = '';
+    for(var r = 1; r <= n; r++) s += '<text x="' + (L - 14) + '" y="' + (Y(r) + 5) + '" text-anchor="end">' + r + '</text>';
+    for(k = 1; k <= cw; k++) s += '<line x1="' + X(k) + '" x2="' + X(k) + '" y1="' + (TP - 8) + '" y2="' + (H - B + 8) + '" stroke="#222a36"/><text x="' + X(k) + '" y="' + (H - 12) + '" text-anchor="middle">Wk' + k + '</text>';
+    var cut = 6.5;
+    s += '<line x1="' + (L - 6) + '" x2="' + (W - R + 6) + '" y1="' + Y(cut) + '" y2="' + Y(cut) + '" stroke="#93a1b3" stroke-dasharray="5 5"/>';
+    s += '<text x="' + (W - R + 4) + '" y="' + (Y(cut) + 4) + '" style="font-size:10px;letter-spacing:1px">PLAYOFF LINE</text>';
+    var final = ms.slice().sort(function(a, b){ return pos[a][cw - 1] - pos[b][cw - 1]; });
+    final.slice().reverse().forEach(function(m){
+      var p = pos[m], d = p.map(function(rk, i){ return (i ? 'L' : 'M') + X(i + 1) + ',' + Y(rk); }).join(' ');
+      if(cw > 1) s += '<path d="' + d + '" fill="none" stroke="' + color[m] + '" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" opacity=".92"/>';
+      p.forEach(function(rk, i){ s += '<circle cx="' + X(i + 1) + '" cy="' + Y(rk) + '" r="5" fill="' + color[m] + '" stroke="#161b22" stroke-width="1.5"/>'; });
+      s += '<text x="' + (X(cw) + 12) + '" y="' + (Y(p[cw - 1]) + 5) + '" style="fill:' + color[m] + ';font-weight:800;font-size:14px">' + esc(nm(m)) + '</text>';
+    });
+    show('sxRace', '<div class="sx-panel"><svg viewBox="0 0 ' + W + ' ' + H + '">' + s + '</svg></div>');
+  }
+
+  // ---- 5. Playoff picture (if the season ended today) ----
+  function bracket(T, cw, nTeams){
+    var st = standingsAfter(T, cw), seeds = st.slice(0, 6);
+    if(seeds.length < 6) return;
+    var W = 600, H = 372, BW = 176, BH = 40, C = [10, 212, 414];
+    var s = '';
+    ['WILD CARD · WK15', 'SEMIS · WK16', 'FINAL · WK17'].forEach(function(t, i){ s += '<text x="' + (C[i] + BW / 2) + '" y="16" text-anchor="middle" style="font-size:12px;font-weight:800;letter-spacing:1px">' + t + '</text>'; });
+    function box(x, y, seed, o, ph){
+      var b = '<rect x="' + x + '" y="' + y + '" width="' + BW + '" height="' + BH + '" rx="8" fill="' + (o ? '#1c2230' : 'transparent') + '" stroke="' + (o ? '#3f93df' : '#2b3444') + '" stroke-width="1.5"' + (o ? '' : ' stroke-dasharray="4 4"') + '/>';
+      if(o){
+        b += '<text x="' + (x + 12) + '" y="' + (y + 26) + '" style="fill:#7cc4ff;font-weight:900;font-size:15px">' + seed + '</text>';
+        b += '<text x="' + (x + 34) + '" y="' + (y + 26) + '" style="fill:#e6edf3;font-weight:800;font-size:16px">' + esc(nm(o.m)) + '</text>';
+        b += '<text x="' + (x + BW - 10) + '" y="' + (y + 26) + '" text-anchor="end" style="font-size:13px">' + o.w + '-' + o.l + (o.t ? '-' + o.t : '') + '</text>';
+      } else b += '<text x="' + (x + BW / 2) + '" y="' + (y + 25) + '" text-anchor="middle" style="font-size:13px;font-style:italic">' + ph + '</text>';
+      return b;
+    }
+    function link(x1, y1, x2, y2){ var xm = (x1 + x2) / 2; return '<path d="M' + x1 + ',' + y1 + ' H' + xm + ' V' + y2 + ' H' + x2 + '" fill="none" stroke="#2b3444" stroke-width="2"/>'; }
+    // Wild card: 4v5 (top), 3v6 (bottom). Semis: 1 vs winner 4/5, 2 vs winner 3/6.
+    var r1 = [[3, 4, 104], [2, 5, 254]], semi = [[0, 'Winner 4/5', 40], [1, 'Winner 3/6', 190]];
+    r1.forEach(function(g){ s += box(C[0], g[2], g[0] + 1, seeds[g[0]]) + box(C[0], g[2] + BH + 6, g[1] + 1, seeds[g[1]]); });
+    semi.forEach(function(g, i){
+      s += box(C[1], g[2], g[0] + 1, seeds[g[0]]) + box(C[1], g[2] + BH + 6, 0, null, g[1]);
+      var r = r1[i]; s += link(C[0] + BW, r[2] + BH + 3, C[1], g[2] + BH + 6 + BH / 2);
+    });
+    var fy = 115;
+    s += box(C[2], fy, 0, null, 'Winner Semi 1') + box(C[2], fy + BH + 6, 0, null, 'Winner Semi 2');
+    s += link(C[1] + BW, 40 + BH + 3, C[2], fy + BH / 2) + link(C[1] + BW, 190 + BH + 3, C[2], fy + BH + 6 + BH / 2);
+    s += '<text x="' + (C[2] + BW / 2) + '" y="' + (fy + 2 * BH + 46) + '" text-anchor="middle" style="font-size:40px">🏆</text>';
+    var out = st[6];
+    show('sxBracket', '<div class="sx-panel"><svg viewBox="0 0 ' + W + ' ' + H + '">' + s + '</svg></div>'
+      + '<div class="sx-cap">If the season ended today' + (out ? ' · First team out: <b>' + esc(nm(out.m)) + '</b> (' + out.w + '-' + out.l + (out.t ? '-' + out.t : '') + ', ' + f1(out.pf) + ' PF)' : '') + '</div>');
+  }
+
+  // ---- 6. Lineup IQ: points left on the bench ----
+  function lineupIQ(T, cw){
+    var rows = Object.keys(T).map(function(m){
+      var t = T[m], best = 0, got = 0;
+      for(var k = 0; k < cw; k++){ if(t.sc[k] == null) continue; best += t.opt[k]; got += t.sc[k]; }
+      return {m:m, left:best - got, iq:best ? got / best : 1};
+    }).sort(function(a, b){ return b.iq - a.iq || a.left - b.left; });
+    var W = 600, RH = 32, TP = 30, H = TP + rows.length * RH + 6, L = 70, BR = 470;
+    var mx = Math.max.apply(null, rows.map(function(r){ return r.left; })) || 1;
+    var s = '<text x="' + L + '" y="16" style="font-size:12px;letter-spacing:1px">POINTS LEFT ON THE BENCH</text><text x="' + (W - 6) + '" y="16" text-anchor="end" style="font-size:12px;letter-spacing:1px">IQ</text>';
+    rows.forEach(function(r, i){
+      var y = TP + i * RH, w = Math.max(2, r.left / mx * (BR - L));
+      // Color by finish (quarters of the league) so the colors always read top-to-bottom.
+      var tier = Math.floor(i * 4 / rows.length), c = ['#2ea043', '#7cc4ff', '#f2cc60', '#f85149'][tier];
+      s += '<text x="' + (L - 10) + '" y="' + (y + 19) + '" text-anchor="end" style="fill:#e6edf3;font-weight:800;font-size:14px">' + esc(nm(r.m)) + '</text>';
+      s += '<rect x="' + L + '" y="' + (y + 5) + '" width="' + w + '" height="' + (RH - 10) + '" rx="4" fill="' + c + '" opacity=".85"/>';
+      s += '<text x="' + (L + w + 8) + '" y="' + (y + 19) + '" style="font-size:13px;font-weight:700">' + f1(r.left) + '</text>';
+      s += '<text x="' + (W - 6) + '" y="' + (y + 19) + '" text-anchor="end" style="fill:' + c + ';font-weight:900;font-size:15px">' + (r.iq * 100).toFixed(1) + '%</text>';
+    });
+    show('sxIQ', '<div class="sx-panel"><svg viewBox="0 0 ' + W + ' ' + H + '">' + s + '</svg></div>'
+      + '<div class="sx-cap">IQ = points scored ÷ points the best possible lineup would have scored, all season.</div>');
+  }
+
+  // ---- 7. Lost it on the bench: losses the best lineup would have won ----
+  function benchLosses(T){
+    var all = [];
+    Object.keys(T).forEach(function(m){ T[m].avoid.forEach(function(a){ all.push(Object.assign({m:m}, a)); }); });
+    if(!all.length){
+      show('sxBench', '<div class="sx-cap" style="font-size:14px">Nobody has lost a game with a winning lineup sitting on their bench. <b>Yet.</b></div>');
+      return;
+    }
+    all.sort(function(a, b){ return (b.best - b.os) - (a.best - a.os); });
+    var top = all.slice(0, 12);
+    var h = '<div class="sx-card"><table class="sx-tbl"><thead><tr><th>Wk</th><th class="l" style="padding-left:10px">MGR</th><th>Lost To</th><th>Score</th><th>Best Lineup</th></tr></thead><tbody>';
+    top.forEach(function(a){
+      h += '<tr><td class="rk">' + a.wk + '</td><td class="mg">' + esc(nm(a.m)) + '</td><td class="dim">' + esc(nm(a.opp)) + '</td><td>' + f1(a.sc) + '–' + f1(a.os) + '</td>'
+        + '<td class="big up">' + f1(a.best) + ' <span style="font-size:11px">(' + sgn(a.best - a.os) + ')</span></td></tr>';
+    });
+    show('sxBench', h + '</tbody></table></div><div class="sx-cap"><b>' + all.length + '</b> loss' + (all.length === 1 ? '' : 'es') + ' this season where the bench had enough points to win' + (all.length > top.length ? ' (top ' + top.length + ' shown)' : '') + '.</div>');
+  }
+
+  // ---- 8. Team MVPs ----
+  function mvps(T, players){
+    var rows = Object.keys(T).map(function(m){
+      var best = null, t = T[m];
+      Object.keys(t.started).forEach(function(id){ if(!best || t.started[id] > best.pts) best = {id:id, pts:t.started[id]}; });
+      return best ? {m:m, id:best.id, pts:best.pts, share:t.pf ? best.pts / t.pf : 0} : null;
+    }).filter(Boolean).sort(function(a, b){ return b.pts - a.pts; });
+    var h = '<div class="sx-card"><table class="sx-tbl"><thead><tr><th class="l" style="padding-left:10px">MGR</th><th class="l">MVP</th><th>Pos</th><th>Pts</th><th>% of PF</th></tr></thead><tbody>';
+    rows.forEach(function(r){
+      var p = players[r.id] || [r.id, '', ''];
+      h += '<tr><td class="mg">' + esc(nm(r.m)) + '</td><td class="nm">' + esc(p[0]) + '</td><td class="dim">' + esc(p[1]) + '</td><td class="big">' + f1(r.pts) + '</td><td>' + Math.round(r.share * 100) + '%</td></tr>';
+    });
+    show('sxMVP', h + '</tbody></table></div><div class="sx-cap">Each team’s top scorer, counting only weeks he was in the starting lineup.</div>');
+  }
+
+  // ---- 9. Top single-game performances ----
+  function topPerf(perf, players){
+    var top = perf.slice().sort(function(a, b){ return b.pts - a.pts; }).slice(0, 12);
+    var h = '<div class="sx-card"><table class="sx-tbl"><thead><tr><th>#</th><th class="l">Player</th><th>Pos</th><th>FDF</th><th>Wk</th><th>Pts</th></tr></thead><tbody>';
+    top.forEach(function(p, i){
+      var pl = players[p.id] || [p.id, '', ''];
+      h += '<tr><td class="rk">' + (i + 1) + '</td><td class="nm" style="font-weight:800">' + esc(pl[0]) + '</td><td class="dim">' + esc(pl[1]) + '</td><td>' + esc(nm(p.m)) + '</td><td class="dim">' + p.wk + '</td><td class="big">' + f1(p.pts) + '</td></tr>';
+    });
+    show('sxTop', h + '</tbody></table></div><div class="sx-cap">Best single-week scores by a player in an FDF starting lineup.</div>');
+  }
+
+  // ---- 10. Waiver wire warriors ----
+  function waivers(txs, r2m){
+    var c = {}; Object.keys(r2m).forEach(function(rid){ c[r2m[rid]] = {adds:0, fail:0}; });
+    txs.forEach(function(list){ (list || []).forEach(function(tx){
+      if(tx.type !== 'waiver' && tx.type !== 'free_agent') return;
+      if(tx.status === 'complete') Object.keys(tx.adds || {}).forEach(function(pid){ var m = r2m[tx.adds[pid]]; if(c[m]) c[m].adds++; });
+      else if(tx.status === 'failed' && tx.type === 'waiver'){ var m = r2m[(tx.roster_ids || [])[0]]; if(c[m]) c[m].fail++; }
+    }); });
+    var rows = Object.keys(c).map(function(m){ return {m:m, a:c[m].adds, f:c[m].fail}; })
+      .sort(function(x, y){ return (y.a + y.f) - (x.a + x.f) || y.a - x.a || x.m.localeCompare(y.m); });
+    var W = 600, RH = 32, TP = 10, H = TP + rows.length * RH + 6, L = 70, BR = 540;
+    var mx = Math.max.apply(null, rows.map(function(r){ return r.a + r.f; })) || 1, s = '';
+    rows.forEach(function(r, i){
+      var y = TP + i * RH, wa = r.a / mx * (BR - L), wf = r.f / mx * (BR - L);
+      s += '<text x="' + (L - 10) + '" y="' + (y + 19) + '" text-anchor="end" style="fill:#e6edf3;font-weight:800;font-size:14px">' + esc(nm(r.m)) + '</text>';
+      if(wa) s += '<rect x="' + L + '" y="' + (y + 5) + '" width="' + wa + '" height="' + (RH - 10) + '" rx="3" fill="#3f93df"/>';
+      if(wf) s += '<rect x="' + (L + wa) + '" y="' + (y + 5) + '" width="' + wf + '" height="' + (RH - 10) + '" rx="3" fill="#f85149" opacity=".85"/>';
+      if(wa > 22) s += '<text x="' + (L + wa - 7) + '" y="' + (y + 20) + '" text-anchor="end" style="fill:#fff;font-weight:800;font-size:13px">' + r.a + '</text>';
+      s += '<text x="' + (L + wa + wf + 8) + '" y="' + (y + 20) + '" style="font-size:13px;font-weight:700">' + (wa > 22 ? '' : r.a + ' ') + (r.f ? '+' + r.f : '') + '</text>';
+    });
+    show('sxWaiver', '<div class="pw-legend" style="margin-bottom:10px"><span><i style="background:#3f93df;height:10px"></i>Players Added</span><span><i style="background:#f85149;height:10px"></i>Waiver Claims Lost</span></div>'
+      + '<div class="sx-panel"><svg viewBox="0 0 ' + W + ' ' + H + '">' + s + '</svg></div>');
+  }
+
+  async function load(){
+    var lr = await Promise.all([getJSON(API), getJSON(API + '/rosters')]), league = lr[0], rosters = lr[1];
+    var cw = Math.max.apply(null, [0].concat(rosters.map(function(r){ var s = r.settings || {}; return (s.wins || 0) + (s.losses || 0) + (s.ties || 0); })));
+    if(!cw) return;
+    var r2m = {}; rosters.forEach(function(r){ r2m[r.roster_id] = OWNER_TO_MGR[String(r.owner_id)] || ('Roster ' + r.roster_id); });
+    var slots = (league.roster_positions || []).filter(function(s){ return s !== 'BN' && s !== 'IR' && s !== 'TAXI'; });
+    var got = await Promise.all([
+      Promise.all(range(1, cw).map(function(w){ return getJSON(API + '/matchups/' + w); })),
+      Promise.all(range(1, Math.min(cw + 1, 18)).map(function(w){ return getJSON(API + '/transactions/' + w).catch(function(){ return []; }); })),
+      (window.__fdfLoadPlayers ? window.__fdfLoadPlayers() : Promise.resolve({})).catch(function(){ return {}; })
+    ]);
+    var weeks = got[0], txs = got[1], players = got[2] || {}, havePlayers = Object.keys(players).length > 0;
+
+    var T = {}, perf = [];
+    Object.keys(r2m).forEach(function(rid){ T[r2m[rid]] = {m:r2m[rid], w:0, l:0, t:0, pf:0, pa:0, sc:[], opt:[], res:[], opp:[], started:{}, avoid:[]}; });
+    weeks.forEach(function(wk, k){
+      var by = {};
+      (wk || []).forEach(function(e){ if(e.matchup_id != null) (by[e.matchup_id] = by[e.matchup_id] || []).push(e); });
+      Object.keys(by).forEach(function(id){
+        var g = by[id]; if(g.length !== 2) return;
+        [[g[0], g[1]], [g[1], g[0]]].forEach(function(p){
+          var x = p[0], y = p[1], t = T[r2m[x.roster_id]]; if(!t) return;
+          var sx = +x.points || 0, sy = +y.points || 0, best = havePlayers ? optimal(x, slots, players) : sx;
+          t.sc[k] = sx; t.opp[k] = r2m[y.roster_id]; t.opt[k] = best; t.pf += sx; t.pa += sy;
+          var r = sx > sy ? 'W' : sx < sy ? 'L' : 'T'; t.res[k] = r;
+          if(r === 'W') t.w++; else if(r === 'L') t.l++; else t.t++;
+          if(r === 'L' && best > sy) t.avoid.push({wk:k + 1, opp:t.opp[k], sc:sx, os:sy, best:best});
+          (x.starters || []).forEach(function(pid){
+            if(!pid || pid === '0') return;
+            var v = +(x.players_points || {})[pid] || 0;
+            t.started[pid] = (t.started[pid] || 0) + v;
+            perf.push({id:pid, m:t.m, wk:k + 1, pts:v});
+          });
+        });
+      });
+    });
+
+    safe(function(){ luckChart(T); });
+    safe(function(){ allPlay(T, cw); });
+    safe(function(){ heatMap(T, cw); });
+    safe(function(){ race(T, cw); });
+    safe(function(){ bracket(T, cw); });
+    if(havePlayers){
+      safe(function(){ lineupIQ(T, cw); });
+      safe(function(){ benchLosses(T); });
+      safe(function(){ mvps(T, players); });
+      safe(function(){ topPerf(perf, players); });
+    }
+    safe(function(){ waivers(txs, r2m); });
+    if(window.__exReset) window.__exReset();
+  }
+  load().catch(function(e){ console.error('Season extras failed to load:', e); });
 })();
 <\/script>
 </body></html></script><script type="text/html" id="src-drafttrends"><!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
